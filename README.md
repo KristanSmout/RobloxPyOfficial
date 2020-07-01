@@ -10,6 +10,10 @@
 * [Usage](#Usage)
   * [Current Features](#Features)
   * [Usage Examples](#Examples)
+    * [External Functions](#External-Functions)
+        * [User Functions](#User-Functions)
+        * [Group Functions](#Group-Functions)
+        * [Asset Functions](#Asset-Functions)
 
 
 # Getting-Started
@@ -40,8 +44,19 @@ This section will cover what is currently supported by the API and how they can 
         * GetFriends(UserID)
         * GetOnlineFriends(UserID)
         * GetOfflineFriends(UserID)
+        * GetUserGroups(UserID)
+    * Group
+        * GetGroupAllies(GroupID)
+        * GetGroupEnemies(GroupID)
+    * Assets
+        * CanManage(UserID,GroupID)
 
 # Examples
+Below are examples of how to use each of the functions within robloxpy
+# External-Functions
+These functions do not require any cookies can be used without any data, these are limited to GET based on what roblox provides
+* ## User-Functions
+These functions allow you to get data in regards to a specific user through the use of their UserID
 * GetName(int UserID)
 ```python
 robloxpy.GetName(1368140) #Get the name of the roblox user with the ID of 1368140
@@ -67,7 +82,38 @@ Output > ['Mirro_rs', 'Natty32']
 
 * GetOfflineFriends(int UserID) 
 ```python
-robloxpy.GetOfflineFriends(1368140) # Get a list of offline friends of the roblox user with the ID 1368140
+robloxpy.GetOfflineFriends(1368140) #Get a list of offline friends of the roblox user with the ID 1368140
 Output > ['SlimemingPlayz', 'E_xitium', 'Kawaii_Katicorn99', 'KatieeLouisee99', 'Yung_nignogpaddywog', 'BigDDave', 'Nosowl', 'Gareth1990', 'Voxxes', 'matantheman', 'ItzDishan', 'Xulfite', 'CinnabonNinja', 'hotrod56478', 'roxo_pl', 'VIPOrder', 'GlowwLikeThat', 'BritishP0litics', 'Nicolas9970', 'YunPlant', 'sirjoshh', 'iMistifye', 'Scorp1x', 'Fribbzdaman', 'xMcKenziee', 'AjinKovac', 'Angels_Develop', 'RonerRehnskiold', 'agnen', 'yusufrad22', 'RocketValkyrie', 'methanshacked', 'GingyWyven', 'KingsmanSS', 'glitch19']
 ```
+
+* GetUserGroups(int UserID) 
+```python
+robloxpy.GetUserGroups(1368140) #Get a list of groups which the user belongs too
+Output > ['Simple Studio', 'BlackRock Studio', 'White Wolf Hounds', '🌶️Hot Pepper Clothes', 'Twisted Murdere r Official Group', 'StarCraft®', 'United Alliance Of Roblox', 'NEVER WALK ALONE']
+```
+
+* ## Group-Functions
+These functions allow you to get data in regards to a specific group
+
+* GetGroupAllies(GroupID)
+```python
+robloxpy.GetGroupAllies(916576) # Get all the allies associated with the group of the ID 916576
+Output > ['Akios', 'Dank']
+```
+
+* GetGroupEnemies(GroupID)
+```python
+robloxpy.GetGroupAllies(916576) # Get all the enemies associated with the group of the ID 916576
+Output > ['United Alliance Of Roblox']
+```
+
+## Asset-Functions
+These functions allow you to get data in regards to a specific asset
+
+* CanManage(UserID,AssetID)
+```python
+robloxpy.CanManage(1368140,240351460)
+Output > True
+```
+
 
