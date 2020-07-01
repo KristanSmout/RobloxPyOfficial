@@ -6,6 +6,7 @@ APIURL = "https://api.roblox.com/"
 InventoryURL = "https://inventory.roblox.com"
 UserAPI = APIURL + "users/"
 GroupAPI = APIURL + "groups/"
+GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
 TestUserID = 1368140
 TestGroupID = 916576
 TestAssetID = 240351460
@@ -62,6 +63,26 @@ def GetUserGroups(UserID):
 
 #region External Group API's
 
+def GetGroupName(GroupID):
+    response = requests.get(GroupAPIV1 + str(GroupID))
+    return response.json()['name']
+
+def GetGroupDescription(GroupID):
+    response = requests.get(GroupAPIV1 + str(GroupID))
+    return response.json()['description']
+
+def GetGroupShout(GroupID):
+    response = requests.get(GroupAPIV1 + str(GroupID))
+    return response.json()['shout']
+
+def IsGroupOpen(GroupID):
+    response = requests.get(GroupAPIV1 + str(GroupID))
+    return response.json()['publicEntryAllowed']
+
+def GetGroupMembers(GroupID):
+    response = requests.get(GroupAPIV1 + str(GroupID))
+    return response.json()['memberCount']
+
 def GetGroupAllies(GroupID):
     response = requests.get(GroupAPI + str(GroupID) + "/allies")
     FullList = []
@@ -90,4 +111,4 @@ def CanManage(UserID,AssetID):
     return response.json()['CanManage']
 #endregion
 
-print(CanManage(TestUserID,TestAssetID))
+print(GetGroupMembers(TestGroupID))

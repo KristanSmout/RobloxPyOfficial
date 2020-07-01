@@ -46,6 +46,11 @@ This section will cover what is currently supported by the API and how they can 
         * GetOfflineFriends(UserID)
         * GetUserGroups(UserID)
     * Group
+        * GetGroupName(GroupID)
+        * GetGroupDescription(GroupID)
+        * GetGroupShout(GroupID)
+        * IsGroupOpen(GroupID)
+        * GetGroupMembers(GroupID)
         * GetGroupAllies(GroupID)
         * GetGroupEnemies(GroupID)
     * Assets
@@ -94,6 +99,46 @@ Output > ['Simple Studio', 'BlackRock Studio', 'White Wolf Hounds', '🌶️Hot 
 
 * ## Group-Functions
 These functions allow you to get data in regards to a specific group
+
+* GetGroupName(GroupID)
+```python
+robloxpy.GetGroupName(916576) # Get the name of the group of the ID 916576
+Output > NEVER WALK ALONE
+```
+
+* GetGroupDescription(GroupID)
+```python
+robloxpy.GetGroupDescription(916576) # Get the description of the group of the ID 916576
+Output > [NWA]Never Walk Alone
+NWA is a PMC style group that aims for perfection and are looking for all types of members to join to help us with our goal.
+
+We like active members at NWA and have a wide range of bots to help the group function with things such as
+ - Automatic Promotion
+ - Inactivity Detector
+
+[Automatic Promotions]
+{Temp Down Will Be Up Within 1 Week}
+
+[Inactivity Kicked]
+{Online - Set to 30 Days}
+```
+
+* GetGroupShout(GroupID)
+```python
+robloxpy.GetGroupShout(916576) # Get the current shout of the group of the ID 916576
+Output > How are you?
+```
+
+* IsGroupOpen(GroupID)
+```python
+robloxpy.IsGroupOpen(916576) # Check if the group of the ID 916576 is open to join
+Output > True
+```
+
+* GetGroupMembers(GroupID)
+```python
+robloxpy.GetGroupMembers(916576) # Get member count of the group of the ID 916576
+Output > 1361
 
 * GetGroupAllies(GroupID)
 ```python
