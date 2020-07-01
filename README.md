@@ -8,8 +8,8 @@
   * [Prerequisites](#Prerequisites)
   * [Installation](#Installation)
 * [Usage](#Usage)
-  * [Current Features] (#Features)
-  * [Usage Examples] (#Examples)
+  * [Current Features](#Features)
+  * [Usage Examples](#Examples)
 
 
 # Getting-Started
@@ -63,9 +63,9 @@ robloxpy.GetOnlineFriends(1368140) #Get a list of online friends of the roblox u
 Output > ['Mirro_rs', 'Natty32']
 ```
 
-* GetOfflineFriends(int UserID) # Get a list of offline friends of the roblox user with the ID 1368140
+* GetOfflineFriends(int UserID) 
 ```python
-robloxpy.GetOfflineFriends(1368140)
+robloxpy.GetOfflineFriends(1368140) # Get a list of offline friends of the roblox user with the ID 1368140
 Output > ['SlimemingPlayz', 'E_xitium', 'Kawaii_Katicorn99', 'KatieeLouisee99', 'Yung_nignogpaddywog', 'BigDDave', 'Nosowl', 'Gareth1990', 'Voxxes', 'matantheman', 'ItzDishan', 'Xulfite', 'CinnabonNinja', 'hotrod56478', 'roxo_pl', 'VIPOrder', 'GlowwLikeThat', 'BritishP0litics', 'Nicolas9970', 'YunPlant', 'sirjoshh', 'iMistifye', 'Scorp1x', 'Fribbzdaman', 'xMcKenziee', 'AjinKovac', 'Angels_Develop', 'RonerRehnskiold', 'agnen', 'yusufrad22', 'RocketValkyrie', 'methanshacked', 'GingyWyven', 'KingsmanSS', 'glitch19']
 ```
 
