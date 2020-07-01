@@ -139,7 +139,7 @@ Output > True
 ```python
 robloxpy.GetGroupMembers(916576) # Get member count of the group of the ID 916576
 Output > 1361
-
+```
 * GetGroupAllies(GroupID)
 ```python
 robloxpy.GetGroupAllies(916576) # Get all the allies associated with the group of the ID 916576
