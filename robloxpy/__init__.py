@@ -35,7 +35,8 @@ def GetOnlineFriends(UserID):
             FullList.append(friend['Username'])
     return FullList
 
-def GetofflineFriends(UserID):
+
+def GetOfflineFriends(UserID):
     FullList = []
     response = requests.get(UserAPI + str(UserID) + "/friends")
     Friendslist = json.loads(response.text)
@@ -43,6 +44,3 @@ def GetofflineFriends(UserID):
         if(str(friend['IsOnline']) in 'False'):
             FullList.append(friend['Username'])
     return FullList
-
-def GetUserGroups(UserID):
-
