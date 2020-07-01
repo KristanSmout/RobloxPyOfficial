@@ -33,11 +33,13 @@ pip install robloxpy --upgrade
 This section will cover what is currently supported by the API and how they can be used
 
 # Features
-* GetName(UserID)
-* IsOnline(UserID)
-* GetFriends(UserID)
-* GetOnlineFriends(UserID)
-* GetOfflineFriends(UserID)
+* External
+    * User
+        * GetName(UserID)
+        * IsOnline(UserID)
+        * GetFriends(UserID)
+        * GetOnlineFriends(UserID)
+        * GetOfflineFriends(UserID)
 
 # Examples
 * GetName(int UserID)
