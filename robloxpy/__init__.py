@@ -4,6 +4,7 @@ import json
 
 APIURL = "https://api.roblox.com/"
 InventoryURL = "https://inventory.roblox.com"
+RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
 GroupAPI = APIURL + "groups/"
 GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
@@ -56,6 +57,41 @@ def GetUserGroups(UserID):
     for group in Grouplist:
         FullList.append(group['Name'])
     return FullList
+
+def GetUserRAP(UserID):
+    response = requests.get(RBXCityInventURL + str(UserID))
+    for data in response.json()['data']:
+        return data['recentAveragePrice']
+
+def GetUserLimitedValue(UserID):
+    response = requests.get(RBXCityInventURL + str(UserID))
+    for data in response.json()['data']:
+        return data['value']
+
+def GetUserNoDemandLimiteds(UserID):
+    response = requests.get(RBXCityInventURL + str(UserID))
+    for data in response.json()['data']:
+        return data['LowDemandItems']
+    
+def GetUserNormalDemandLimiteds(UserID):
+    response = requests.get(RBXCityInventURL + str(UserID))
+    for data in response.json()['data']:
+        return data['NormalDemandItems']
+
+def GetUserGoodDemandLimiteds(UserID):
+    response = requests.get(RBXCityInventURL + str(UserID))
+    for data in response.json()['data']:
+        return data['GoodDemandItems']
+
+def GetUserAmazingDemandLimiteds(UserID):
+    response = requests.get(RBXCityInventURL + str(UserID))
+    for data in response.json()['data']:
+        return data['AmazingDemandItems']
+
+def GetUserTerribleDemandLimiteds(UserID):
+    response = requests.get(RBXCityInventURL + str(UserID))
+    for data in response.json()['data']:
+        return data['TerribleDemandItems']
 
 
 
@@ -111,4 +147,5 @@ def CanManage(UserID,AssetID):
     return response.json()['CanManage']
 #endregion
 
-print(GetGroupMembers(TestGroupID))
+print(GetUserTerribleDemandLimiteds(TestUserID))
+

@@ -12,6 +12,7 @@
   * [Usage Examples](#Examples)
     * [External Functions](#External-Functions)
         * [User Functions](#User-Functions)
+            * [LimitedRelated](#Limited-Functions)
         * [Group Functions](#Group-Functions)
         * [Asset Functions](#Asset-Functions)
 
@@ -45,6 +46,13 @@ This section will cover what is currently supported by the API and how they can 
         * GetOnlineFriends(UserID)
         * GetOfflineFriends(UserID)
         * GetUserGroups(UserID)
+        * GetUserRap(UserID)
+        * GetUserLimitedValue(UserID)
+        * GetUserNoDemandLimiteds(UserID)
+        * GetUserLowDemandLimiteds(UserID)
+        * GetUserNormalDemandLimiteds(UserID)
+        * GetUserGoodDemandLimiteds(UserID)
+        * GetUserTerribleDemandLimiteds(UserID)
     * Group
         * GetGroupName(GroupID)
         * GetGroupDescription(GroupID)
@@ -96,6 +104,27 @@ Output > ['SlimemingPlayz', 'E_xitium', 'Kawaii_Katicorn99', 'KatieeLouisee99', 
 robloxpy.GetUserGroups(1368140) #Get a list of groups which the user belongs too
 Output > ['Simple Studio', 'BlackRock Studio', 'White Wolf Hounds', '🌶️Hot Pepper Clothes', 'Twisted Murdere r Official Group', 'StarCraft®', 'United Alliance Of Roblox', 'NEVER WALK ALONE']
 ```
+* # Limited-Functions
+These functions relate to getting the value of a user based on their limiteds
+* GetUserRAP(int UserID)
+```python
+robloxpy.GetUserRap(1368140) # Get the RAP of the user with the ID 1368140
+Output > 298202
+```
+
+* GetUserLimitedValue(UserID)
+```python
+robloxpy.GetUserLimitedValue(1368140) # Get the RAP of the user with the ID 1368140
+Output > 389539
+```
+
+All the functions to determine the quality of a users items are the same just switching the type each providing a similiar output
+* GetUserTerribleDemandLimiteds(UserID)
+```python
+robloxpy.GetUserTerribleDemandLimiteds(1368140) # Get limiteds considered terrible and undesired by the user with the ID 1368140
+Output > 0
+```
+
 
 * ## Group-Functions
 These functions allow you to get data in regards to a specific group
