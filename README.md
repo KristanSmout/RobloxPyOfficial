@@ -46,6 +46,7 @@ This section will cover what is currently supported by the API and how they can 
         * GetOnlineFriends(UserID)
         * GetOfflineFriends(UserID)
         * GetUserGroups(UserID)
+    * RAP
         * GetUserRap(UserID)
         * GetUserLimitedValue(UserID)
         * GetUserNoDemandLimiteds(UserID)
