@@ -3,6 +3,7 @@ import json
 
 
 APIURL = "https://api.roblox.com/"
+MobileAPI = "https://www.roblox.com/mobileapi/"
 InventoryURL = "https://inventory.roblox.com/v2/assets/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
@@ -16,8 +17,8 @@ TestCatalogID = 16641274
 f = open("Cookie.txt","r")
 TestCookie =  f.read()
 
-print(TestCookie)
 
+#region External
 
 #region External User API's
 
@@ -145,7 +146,6 @@ def GetGroupEnemies(GroupID):
 
 #endregion
 
-
 #region External Asset API's
 
 def CanManage(UserID,AssetID):
@@ -181,5 +181,64 @@ def GetSerialList(AssetID):
 
 #endregion
 
-print(GetSerialList(TestCatalogID))
+#endregion
 
+
+#region Internal
+
+def SetCookie(Cookie):
+    session = requests.session()
+    CurrentCookie = {'.ROBLOSECURITY': Cookie}
+    requests.utils.add_dict_to_cookiejar(session.cookies, CurrentCookie)
+    
+    Header = session.post('https://www.roblox.com/api/item.ashx?')
+    session.headers['X-CSRF-TOKEN'] = Header.headers['X-CSRF-TOKEN']
+    return session
+
+def GetUserInfo(cookie):
+    session = SetCookie(cookie)
+    Info = session.get('http://www.roblox.com/mobileapi/userinfo').json()
+    return Info
+
+def GetUserName(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(MobileAPI + 'userinfo')
+    return response.json()['UserName']
+
+def GetRobux(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(MobileAPI + 'userinfo')
+    return response.json()['RobuxBalance']
+
+def IsPremium(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(MobileAPI + 'userinfo')
+    return response.json()['IsPremium']
+
+def GetAvatar(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(MobileAPI + 'userinfo')
+    return response.json()['ThumbnailUrl']
+
+def FollowUser(Cookie,UserID):
+    session = SetCookie(Cookie)
+    Post = session.post('https://friends.roblox.com/v1/users/' + str(UserID) + '/follow',data={'targetUserID': UserID})
+    return Post.json()['success']
+
+def UnfollowUser(Cookie,UserID):
+    session = SetCookie(Cookie)
+    Post = session.post('https://friends.roblox.com/v1/users/' + str(UserID) + '/unfollow',data={'targetUserID': UserID})
+    return Post.json()['success']
+
+def BlockUser(Cookie,UserID): #Not Working Unsure Why
+    session = SetCookie(Cookie)
+    Post = session.post('http://api.roblox.com/userblock/block/?userId=' + str(UserID),data={'targetUserID': UserID})
+    return Post.json()['success']
+
+def UnblockUser(Cookie,UserID):
+    session = SetCookie(Cookie)
+    Post = session.post('http://api.roblox.com/userblock/unblock/?userId=' + str(UserID),data={'targetUserID': UserID})
+    return Post.json()['success']
+#endregion
+
+print(UnblockUser(TestCookie,244052296))
