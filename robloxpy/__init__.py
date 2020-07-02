@@ -11,13 +11,9 @@ RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
 GroupAPI = APIURL + "groups/"
 GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
-TestUserID = 1368140
-TestGroupID = 916576
-TestAssetID = 240351460
-TestCatalogID = 16641274
 
-f = open("Cookie.txt","r")
-TestCookie =  f.read()
+
+
 
 
 #region External
@@ -310,5 +306,3 @@ def PostGroupWall(Cookie,GroupID,Text):
 #endregion
 
 #endregion
-
-print(JoinGroup(TestCookie,TestGroupID))
