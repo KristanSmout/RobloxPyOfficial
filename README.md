@@ -203,7 +203,7 @@ Output > True
 
 # Internal-Functions
 These functions require a cookie of the user account they wish to be run on as a variable. These functions allow support for both POST and GET requests allowing actions to be taken on an account.
-# Internal-User-Functions
+## Internal-User-Functions
 These functions are specific to actions related to the account of the cookies being used.
 Since roblox cookies are looooooong I will be using 'ExampleCookie' as a placeholder, below is an example of how you may do this within your program. This cookie is not real and randomly generated following the requirements
 ```python
