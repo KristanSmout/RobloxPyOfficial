@@ -41,6 +41,7 @@ This section will cover what is currently supported by the API and how they can 
 # Features
 * External
     * User
+        * NameToID(UserName) 
         * GetName(UserID)
         * IsOnline(UserID)
         * GetFriends(UserID)
@@ -90,7 +91,14 @@ Below are examples of how to use each of the functions within robloxpy
 # External-Functions
 These functions do not require any cookies can be used without any data, these are limited to GET based on what roblox provides
 * ## User-Functions
-These functions allow you to get data in regards to a specific user through the use of their UserID
+These functions allow you to get data in regards to a specific user through the use of their UserID or UserName
+
+* NameToID(UserName) 
+```python
+robloxpy.NameToID(kristan99) #Get the UserID of the roblox user with the name kristan99
+Output > 1368140
+```
+
 * GetName(UserID)
 ```python
 robloxpy.GetName(1368140) #Get the name of the roblox user with the ID of 1368140

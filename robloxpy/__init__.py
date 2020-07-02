@@ -23,6 +23,10 @@ TestCookie =  f.read()
 
 #region External User API's
 
+def NameToID(UserName):
+     response = requests.get(UserAPI + 'get-by-username?username=' + str(UserName))
+     return response.json()['Id']
+
 def GetName(UserID):
     response = requests.get(UserAPI + str(UserID))
     return response.json()['Username']
@@ -273,12 +277,12 @@ def UnfollowUser(Cookie,UserID):
 
 def BlockUser(Cookie,UserID): #Not Working Unsure Why
     session = SetCookie(Cookie)
-    Post = session.post('http://api.roblox.com/userblock/block/?userId=' + str(UserID),data={'targetUserID': UserID})
+    Post = session.post('http://api.roblox.com/userblock/block?userId=' + str(UserID),data={'targetUserID': UserID})
     return Post.json()['success']
 
 def UnblockUser(Cookie,UserID):
     session = SetCookie(Cookie)
-    Post = session.post('http://api.roblox.com/userblock/unblock/?userId=' + str(UserID),data={'targetUserID': UserID})
+    Post = session.post('http://api.roblox.com/userblock/unblock?userId=' + str(UserID),data={'targetUserID': UserID})
     return Post.json()['success']
 
 
