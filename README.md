@@ -17,6 +17,7 @@
         * [Asset Functions](#Asset-Functions)
     * [Internal Functions](#Internal-Functions)
         * [User Functions](#Internal-User-Functions)
+        * [Group Functions](#Internal-Group-Functions)
 
 # Getting-Started
 To use the wrapper you will need to download and import robloxpy into your current project. The project has not external requirements that is not included within the defaults of a python install.
@@ -289,4 +290,19 @@ Output > True
 ```python
 robloxpy.UnblockUser(ExampleCookie,1368140) #Unblock the user with ID 1368140
 Output > True
+```
+
+# Internal-Group-Functions
+The functions require the use of a cookie that can be used to get the information required.
+
+* GetFunds(Cookie,GroupID)
+```python
+robloxpy.GetFunds(ExampleCookie,916576) #Get funds of 916576 if they can be spent
+Output > 583
+```
+
+* PostGroupWall(Cookie,GroupID,Text)
+```python
+robloxpy.PostGroupWall(ExampleCookie,916576,'Hello World') #Send a post to the wall of group ID 916576
+Output > Sent
 ```

@@ -5,6 +5,7 @@ import json
 APIURL = "https://api.roblox.com/"
 SettingsURL = "https://www.roblox.com/my/settings/json"
 MobileAPI = "https://www.roblox.com/mobileapi/"
+EconomyURL = "https://economy.roblox.com/v1/"
 InventoryURL = "https://inventory.roblox.com/v2/assets/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
@@ -52,7 +53,6 @@ def GetOnlineFriends(UserID):
             FullList.append(friend['Username'])
     return FullList
 
-
 def GetOfflineFriends(UserID):
     FullList = []
     response = requests.get(UserAPI + str(UserID) + "/friends")
@@ -73,7 +73,9 @@ def GetUserGroups(UserID):
 def GetUserRAP(UserID):
     response = requests.get(RBXCityInventURL + str(UserID))
     for data in response.json()['data']:
-        return data['recentAveragePrice']
+        print(data)
+        return 'Test'
+        #return data['recentAveragePrice']
 
 def GetUserLimitedValue(UserID):
     response = requests.get(RBXCityInventURL + str(UserID))
@@ -191,6 +193,7 @@ def GetSerialList(AssetID):
 
 #region Internal
 
+#region UserFunctions
 def SetCookie(Cookie):
     session = requests.session()
     CurrentCookie = {'.ROBLOSECURITY': Cookie}
@@ -285,8 +288,22 @@ def UnblockUser(Cookie,UserID):
     Post = session.post('http://api.roblox.com/userblock/unblock?userId=' + str(UserID),data={'targetUserID': UserID})
     return Post.json()['success']
 
+#endregion
 
+#region GroupFunctions
+
+def GetFunds(Cookie,GroupID):
+    session = SetCookie(Cookie)
+    response = session.get(EconomyURL + '/groups/' + str(GroupID) + '/currency')
+    return response.json()['robux']
+
+def PostGroupWall(Cookie,GroupID,Text):
+    session = SetCookie(Cookie)
+    Post = session.post(GroupAPIV1 + str(GroupID) + '/wall/posts',data={'body': Text})
+    return 'Sent'
 
 #endregion
 
-print(IsFollowing(TestCookie,244052296))
+#endregion
+
+print(PostGroupWall(TestCookie,TestGroupID,'This is a test'))
