@@ -234,11 +234,11 @@ Output > Fa********@email.com
 
 
 Each of these functions will return a true or false relevant to what is being checked
-    * IsEmailVerified(Cookie)
-    * CanTrade(Cookie)
-    * IsOver13(Cookie)
-    * IsTwoStepEnabled(Cookie)
-    * IsAccountPinEnabled(Cookie)
+* IsEmailVerified(Cookie)
+* CanTrade(Cookie)
+* IsOver13(Cookie)
+* IsTwoStepEnabled(Cookie)
+* IsAccountPinEnabled(Cookie)
 
 * GetRobux(Cookie)
 ```python
