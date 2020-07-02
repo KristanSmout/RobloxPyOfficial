@@ -292,6 +292,11 @@ def UnblockUser(Cookie,UserID):
 
 #region GroupFunctions
 
+def JoinGroup(Cookie,GroupID):
+    session = SetCookie(Cookie)
+    Post = session.post(GroupAPIV1 + str(GroupID) + '/users')
+    return Post.text
+
 def GetFunds(Cookie,GroupID):
     session = SetCookie(Cookie)
     response = session.get(EconomyURL + '/groups/' + str(GroupID) + '/currency')
@@ -306,4 +311,4 @@ def PostGroupWall(Cookie,GroupID,Text):
 
 #endregion
 
-print(PostGroupWall(TestCookie,TestGroupID,'This is a test'))
+print(JoinGroup(TestCookie,TestGroupID))

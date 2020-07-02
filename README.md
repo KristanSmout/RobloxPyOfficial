@@ -295,6 +295,12 @@ Output > True
 # Internal-Group-Functions
 The functions require the use of a cookie that can be used to get the information required.
 
+* JoinGroup(Cookie,GroupID)
+```python
+robloxpy.JoinGroup(ExampleCookie,916576) #Join group with the ID 916576 if possible
+Output > Joined
+```
+
 * GetFunds(Cookie,GroupID)
 ```python
 robloxpy.GetFunds(ExampleCookie,916576) #Get funds of 916576 if they can be spent
