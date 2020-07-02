@@ -3,7 +3,7 @@ import json
 
 
 APIURL = "https://api.roblox.com/"
-InventoryURL = "https://inventory.roblox.com"
+InventoryURL = "https://inventory.roblox.com/v2/assets/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
 GroupAPI = APIURL + "groups/"
@@ -11,6 +11,7 @@ GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
 TestUserID = 1368140
 TestGroupID = 916576
 TestAssetID = 240351460
+TestCatalogID = 16641274
 
 
 #region External User API's
@@ -145,7 +146,35 @@ def GetGroupEnemies(GroupID):
 def CanManage(UserID,AssetID):
     response = requests.get(UserAPI + str(UserID) + '/canmanage/' + str(AssetID))
     return response.json()['CanManage']
+
+def GetSerialList(AssetID):
+    IsAll = False
+    FullList = []
+    NextPage = 'N/A'
+
+    while (IsAll == False):
+        if(NextPage == 'N/A'):
+            response = requests.get(InventoryURL + str(AssetID) + '/owners')
+            NextPage = response.json()['nextPageCursor']
+        elif(NextPage == 'Done'):
+            IsAll = True
+        else:
+            response = requests.get(InventoryURL + str(AssetID) + '/owners?&cursor=' + NextPage)
+            NextPage = response.json()['nextPageCursor']
+        
+        OwnerList = json.loads(response.text)
+        OwnerList = OwnerList['data']
+        for owner in OwnerList:
+            FullList.append(owner['serialNumber'])
+
+        if(NextPage == None):
+            IsAll = True
+
+
+    return FullList
+    #return response.json()['nextPageCursor']
+
 #endregion
 
-print(GetUserTerribleDemandLimiteds(TestUserID))
+print(GetSerialList(TestCatalogID))
 
