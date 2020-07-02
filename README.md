@@ -239,7 +239,7 @@ Each of these functions will return a true or false relevant to what is being ch
 * IsOver13(Cookie)
 * IsTwoStepEnabled(Cookie)
 * IsAccountPinEnabled(Cookie)
-
+---
 * GetRobux(Cookie)
 ```python
 robloxpy.GetUserName(ExampleCookie) #Get Robux of the current cookie in use
