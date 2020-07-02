@@ -1,5 +1,4 @@
-import requests
-import json
+import requests,json,time
 
 
 APIURL = "https://api.roblox.com/"
@@ -284,7 +283,18 @@ def UnblockUser(Cookie,UserID):
     Post = session.post('http://api.roblox.com/userblock/unblock?userId=' + str(UserID),data={'targetUserID': UserID})
     return Post.json()['success']
 
+def SendMessage(Cookie,UserID,MessageSubject,Body):
+    session = SetCookie(Cookie)
+    Post = session.post('https://www.roblox.com/messages/send',data={
+                       'subject': MessageSubject,
+                       'body': Body,
+                       'recipientid': str(UserID),
+                       'cacheBuster': str(int(time.time()))
+               })
+    print(Post)
+    return Post
 #endregion
+
 
 #region GroupFunctions
 
