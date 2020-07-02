@@ -68,12 +68,22 @@ This section will cover what is currently supported by the API and how they can 
 
 * Internal
     * User
+        * GetUserID(Cookie)
         * GetUserName(Cookie)
+        * GetEmail(Cookie)
+        * IsEmailVerified(Cookie)
+        * CanTrade(Cookie)
+        * IsOver13(Cookie)
+        * IsTwoStepEnabled(Cookie)
+        * IsAccountPinEnabled(Cookie)
         * GetRobux(Cookie)
         * IsPremium(Cookie)
         * GetAvatar(Cookie)
+        * IsFollowing(Cookie, UserID)
         * FollowUser(Cookie, UserID)
         * UnfollowUser(Cookie, UserID)
+        * BlockUser(Cookie, UserID)
+        * UnblocKUser(Cookie, UserID)
 
 # Examples
 Below are examples of how to use each of the functions within robloxpy
@@ -203,17 +213,32 @@ Output > True
 
 # Internal-Functions
 These functions require a cookie of the user account they wish to be run on as a variable. These functions allow support for both POST and GET requests allowing actions to be taken on an account.
-## Internal-User-Functions
+# Internal-User-Functions
 These functions are specific to actions related to the account of the cookies being used.
 Since roblox cookies are looooooong I will be using 'ExampleCookie' as a placeholder, below is an example of how you may do this within your program. This cookie is not real and randomly generated following the requirements
 ```python
 ExampleCookie = '_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_A292F2A0D15508456743D0472FCBF81E081677B96500C348C08C6D3009975DA56D4D1BE762BB225C26A960FEC6746A932C46CFD7364B2F646758731949B6F8C8288F9C628D6AD4DB90C7F1A1BD1EA54AD4169C51AD081561E230C31974366ADEF1726A4490940262EB9D694457C58E48C8385C9D426F0C2A247206DF0E149F675107EB0B60DE5173E5D8556F93CFD6104E786727E6C86A8E8F4CF3B8DEEA0CCE447159BE0D7AB6E16FD193C85526E2BC928F7B90EA5146EC7A243AF98D72EDBCF2154839A8078DAA60F048FFDC67B7367C5E6EE6F7BC5AF902CAB331F66B96310015BB93225E9D4242CD5A4FC2D20321576D268F84A3EBBD752FA80CAF30D73525A9C764FFFE718345EF864235F910EAEB49ED5537AD2432A3A74F9A3AF1B4F5B9C5B2C0'
 ```
+
 * GetUserName(Cookie)
 ```python
 robloxpy.GetUserName(ExampleCookie) #Get Name of the current cookie in use
 Output > Builderman
 ```
+
+* GetEmail(Cookie)
+```python
+robloxpy.GetEmail(ExampleCookie) #Get Email of the current cookie in use
+Output > Fa********@email.com
+```
+
+
+Each of these functions will return a true or false relevant to what is being checked
+    * IsEmailVerified(Cookie)
+    * CanTrade(Cookie)
+    * IsOver13(Cookie)
+    * IsTwoStepEnabled(Cookie)
+    * IsAccountPinEnabled(Cookie)
 
 * GetRobux(Cookie)
 ```python
@@ -226,7 +251,13 @@ robloxpy.IsPremium(ExampleCookie) #Check if cookie user is premium
 Output > True
 ```
 
-RobloxPy has the ability to follow and unfollow users for the cookie currently being used, these functions will provide a true or false value based on if it was a success; alternatively any errors that occur will be returned to the user also
+RobloxPy has the ability to follow and unfollow users for the cookie currently being used, these functions will provide a true or false value based on if it was a success; alternatively any errors that occur will be returned to the user also.
+* IsFollowing(Cookie, UserID)
+```python
+robloxpy.IsFollowing(ExampleCookie,1368140) #Check if cookie user is following user with the ID 1368140
+Output > True
+```
+
 * FollowUser(Cookie, UserID)
 ```python
 robloxpy.FollowUser(ExampleCookie,1368140) #Follow user with ID 1368140
@@ -242,6 +273,12 @@ RobloxPy has the ability to block and unblock users for the cookie currently bei
 
 * BlockUser(Cookie, UserID)
 ```python
-robloxpy.BlockUser(ExampleCookie,1368140) #UBlock the user with ID 1368140
+robloxpy.BlockUser(ExampleCookie,1368140) #Block the user with ID 1368140
+Output > True
+```
+
+* UnblockUser(Cookie, UserID)
+```python
+robloxpy.UnblockUser(ExampleCookie,1368140) #Unblock the user with ID 1368140
 Output > True
 ```

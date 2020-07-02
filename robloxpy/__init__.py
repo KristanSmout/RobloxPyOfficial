@@ -3,6 +3,7 @@ import json
 
 
 APIURL = "https://api.roblox.com/"
+SettingsURL = "https://www.roblox.com/my/settings/json"
 MobileAPI = "https://www.roblox.com/mobileapi/"
 InventoryURL = "https://inventory.roblox.com/v2/assets/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
@@ -200,10 +201,45 @@ def GetUserInfo(cookie):
     Info = session.get('http://www.roblox.com/mobileapi/userinfo').json()
     return Info
 
+def GetUserID(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(MobileAPI + 'userinfo')
+    return response.json()['UserID']
+
 def GetUserName(Cookie):
     session = SetCookie(Cookie)
     response = session.get(MobileAPI + 'userinfo')
     return response.json()['UserName']
+
+def GetEmail(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(SettingsURL)
+    return response.json()['UserEmail']
+
+def IsEmailedVerified(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(SettingsURL)
+    return response.json()['UserEmailVerified']
+
+def CanTrade(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(SettingsURL)
+    return response.json()['CanTrade']
+
+def IsOver13(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(SettingsURL)
+    return response.json()['UserAbove13']
+
+def IsTwoStepEnabled(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(SettingsURL)
+    return response.json()['IsTwoStepEnabled']
+
+def IsAccountPinEnabled(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(SettingsURL)
+    return response.json()['IsAccountPinEnabled']
 
 def GetRobux(Cookie):
     session = SetCookie(Cookie)
@@ -219,6 +255,11 @@ def GetAvatar(Cookie):
     session = SetCookie(Cookie)
     response = session.get(MobileAPI + 'userinfo')
     return response.json()['ThumbnailUrl']
+
+def IsFollowing(Cookie,UserID):
+    session = SetCookie(Cookie)
+    response = session.get(APIURL + 'user/following-exists?UserID=' + str(UserID) + '&followerUserID=' + str(GetUserID(Cookie)),data={'targetUserID': UserID})
+    return response.json()['isFollowing']
 
 def FollowUser(Cookie,UserID):
     session = SetCookie(Cookie)
@@ -239,6 +280,9 @@ def UnblockUser(Cookie,UserID):
     session = SetCookie(Cookie)
     Post = session.post('http://api.roblox.com/userblock/unblock/?userId=' + str(UserID),data={'targetUserID': UserID})
     return Post.json()['success']
+
+
+
 #endregion
 
-print(UnblockUser(TestCookie,244052296))
+print(IsFollowing(TestCookie,244052296))
