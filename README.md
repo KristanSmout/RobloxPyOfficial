@@ -232,7 +232,7 @@ robloxpy.GetEmail(ExampleCookie) #Get Email of the current cookie in use
 Output > Fa********@email.com
 ```
 
-
+---
 Each of these functions will return a true or false relevant to what is being checked
 * IsEmailVerified(Cookie)
 * CanTrade(Cookie)
