@@ -13,6 +13,11 @@ TestGroupID = 916576
 TestAssetID = 240351460
 TestCatalogID = 16641274
 
+f = open("Cookie.txt","r")
+TestCookie =  f.read()
+
+print(TestCookie)
+
 
 #region External User API's
 
