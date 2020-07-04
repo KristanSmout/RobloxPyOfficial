@@ -324,12 +324,58 @@ def SendMessage(Cookie,UserID,MessageSubject,Body):
 def JoinGroup(Cookie,GroupID):
     session = SetCookie(Cookie)
     Post = session.post(GroupAPIV1 + str(GroupID) + '/users')
-    return Post.text
+    return 'Joined'
+
+def LeaveGroup(Cookie,GroupID):
+    session = SetCookie(Cookie)
+    LocalUserID = GetUserID(Cookie)
+    Post = session.delete(GroupAPIV1 + str(GroupID) + '/users/' + str(LocalUserID))
+    return 'Left'
 
 def GetFunds(Cookie,GroupID):
     session = SetCookie(Cookie)
     response = session.get(EconomyURL + '/groups/' + str(GroupID) + '/currency')
     return response.json()['robux']
+
+def PayGroupFunds(Cookie,GroupID,UserID,RobuxAmount):
+    session = SetCookie(Cookie)
+    
+    data={
+    "PayoutType": "FixedAmount",
+    "Recipients": [
+    {
+        "recipientId": str(UserID),
+        "recipientType": "User",
+        "amount": str(RobuxAmount)
+    }
+ ]
+}
+
+    Post = session.post(GroupAPIV1 + str(GroupID) + '/payouts',json=data)
+    if(Post.status_code == 200):
+        return 'Sent'
+    else:
+        return 'Error'
+
+def PayGroupPercentage(Cookie,GroupID,UserID,Percentage):
+    session = SetCookie(Cookie)
+    
+    data={
+    "PayoutType": "Percentage",
+    "Recipients": [
+    {
+        "recipientId": str(UserID),
+        "recipientType": "User",
+        "amount": str(Percentage)
+    }
+ ]
+}
+
+    Post = session.post(GroupAPIV1 + str(GroupID) + '/payouts',json=data)
+    if(Post.status_code == 200):
+        return 'Sent'
+    else:
+        return 'Error'
 
 def PostGroupWall(Cookie,GroupID,Text):
     session = SetCookie(Cookie)

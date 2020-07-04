@@ -321,10 +321,29 @@ robloxpy.JoinGroup(ExampleCookie,916576) #Join group with the ID 916576 if possi
 Output > Joined
 ```
 
+* LeaveGroup(Cookie,GroupID)
+```python
+robloxpy.LeaveGroup(ExampleCookie,916576) #Leave group with the ID 916576 if possible
+Output > Left
+```
+
 * GetFunds(Cookie,GroupID)
 ```python
 robloxpy.GetFunds(ExampleCookie,916576) #Get funds of 916576 if they can be spent
 Output > 583
+```
+
+RobloxPy supports the payout of group funds in both a percentage and value capacity. The functions also support a small ammount of error checking confirming if the payment was reported as being sent or not.
+* PayGroupFunds(Cookie,GroupID,UserID,RobuxAmmount)
+```python
+robloxpy.PayGroupFunds(ExampleCookie,916576,1368140,100) #Get 100 robux from group ID 916576 if they can be spent
+Output > Sent
+```
+
+* PayGroupPercentage(Cookie,GroupID,UserID,RobuxAmmount)
+```python
+robloxpy.PayGroupPercentage(ExampleCookie,916576,1368140,100) #Get 100 robux from group ID 916576 if they can be spent
+Output > Sent
 ```
 
 * PostGroupWall(Cookie,GroupID,Text)
