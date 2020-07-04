@@ -5,6 +5,7 @@ APIURL = "https://api.roblox.com/"
 SettingsURL = "https://www.roblox.com/my/settings/json"
 MobileAPI = "https://www.roblox.com/mobileapi/"
 EconomyURL = "https://economy.roblox.com/v1/"
+FriendsURL = "https://friends.roblox.com/v1/"
 InventoryURL = "https://inventory.roblox.com/v2/assets/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
@@ -282,6 +283,28 @@ def UnblockUser(Cookie,UserID):
     session = SetCookie(Cookie)
     Post = session.post('http://api.roblox.com/userblock/unblock?userId=' + str(UserID),data={'targetUserID': UserID})
     return Post.json()['success']
+
+
+def SendFriendRequest(Cookie,UserID):
+    session = SetCookie(Cookie)
+    Post = session.post(FriendsURL + 'users/' + UserID + '/request-friendship',data={'targetUserID': UserID})
+    try:
+        return Post.json()['success']
+    except:
+        return Post.json()['errors'][0]['message']
+
+def Unfriend(Cookie,UserID):
+    session = SetCookie(Cookie)
+    Post = session.post(FriendsURL + 'users/' + UserID + '/unfriend',data={'targetUserID': UserID})
+    try:
+        return 'Sent'
+    except:
+        return 'Error'
+
+def TotalFriends(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(FriendsURL + 'my/friends/count')
+    return response.json()['count']
 
 def SendMessage(Cookie,UserID,MessageSubject,Body):
     session = SetCookie(Cookie)

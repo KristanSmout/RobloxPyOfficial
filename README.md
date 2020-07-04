@@ -292,6 +292,26 @@ robloxpy.UnblockUser(ExampleCookie,1368140) #Unblock the user with ID 1368140
 Output > True
 ```
 
+Robloxpy allows you to send friend requests to users or to unfriend or cancel a friend request. The 'SendFriendRequest' function will provide the output of success or return an error message. The 'Unfriend' function will return either a sent confirmation or error depending on the response from the server.
+
+* SendFriendRequest(Cookie, UserID)
+```python
+robloxpy.SendFriendRequest(ExampleCookie,1368140) #Send a friend request to the user with ID 1368140
+Output > success
+```
+
+* Unfriend(Cookie, UserID)
+```python
+robloxpy.Unfriend(ExampleCookie,1368140) #Unfriend the user with ID 1368140
+Output > sent
+```
+
+* TotalFriends(Cookie, UserID)
+```python
+robloxpy.TotalFriends(ExampleCookie) #Total friends of the local user
+Output > 5
+```
+
 # Internal-Group-Functions
 The functions require the use of a cookie that can be used to get the information required.
 
