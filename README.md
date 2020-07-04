@@ -58,6 +58,7 @@ This section will cover what is currently supported by the API and how they can 
         * GetUserGoodDemandLimiteds(UserID)
         * GetUserTerribleDemandLimiteds(UserID)
     * Group
+        * IsGroupOwned(GroupID)
         * GetGroupName(GroupID)
         * GetGroupDescription(GroupID)
         * GetGroupShout(GroupID)
@@ -90,6 +91,7 @@ This section will cover what is currently supported by the API and how they can 
         * Unfriend(Cookie,UserID)
         * TotalFriends(Cookie)
     * Group
+        * ClaimGroup(Cookie,GroupID)
         * JoinGroup(Cookie,GroupID)
         * LeaveGroup(Cookie,GroupID)
         * GetFunds(Cookie,GroupID)
@@ -169,6 +171,11 @@ Output > 0
 * ## Group-Functions
 These functions allow you to get data in regards to a specific group
 
+IsGroupOwned(GroupID)
+```python
+robloxpy.IsGroupOwned(916576) # Check if the group of the ID 916576 is owned
+Output > True
+```
 * GetGroupName(GroupID)
 ```python
 robloxpy.GetGroupName(916576) # Get the name of the group of the ID 916576
@@ -324,6 +331,12 @@ Output > 5
 
 # Internal-Group-Functions
 The functions require the use of a cookie that can be used to get the information required.
+
+* ClaimGroup(Cookie,GroupID)
+```python
+robloxpy.JoinGroup(ExampleCookie,916576) #Claim ownership of group with the ID 916576 if possible
+Output > Sent
+```
 
 * JoinGroup(Cookie,GroupID)
 ```python

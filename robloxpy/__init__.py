@@ -109,6 +109,14 @@ def GetUserTerribleDemandLimiteds(UserID):
 
 #region External Group API's
 
+def IsGroupOwned(GroupID):
+    response = requests.get(GroupAPIV1 + str(GroupID))
+    
+    if(str(response.json()['owner']) == 'None'):
+        return False
+    else:
+        return True
+
 def GetGroupName(GroupID):
     response = requests.get(GroupAPIV1 + str(GroupID))
     return response.json()['name']
@@ -321,6 +329,11 @@ def SendMessage(Cookie,UserID,MessageSubject,Body):
 
 #region GroupFunctions
 
+def ClaimGroup(Cookie,GroupID):
+    session = SetCookie(Cookie)
+    Post = session.post(GroupAPIV1 + str(GroupID) + '/claim-ownership')
+    return 'Sent'
+
 def JoinGroup(Cookie,GroupID):
     session = SetCookie(Cookie)
     Post = session.post(GroupAPIV1 + str(GroupID) + '/users')
@@ -370,7 +383,6 @@ def PayGroupPercentage(Cookie,GroupID,UserID,Percentage):
     }
  ]
 }
-
     Post = session.post(GroupAPIV1 + str(GroupID) + '/payouts',json=data)
     if(Post.status_code == 200):
         return 'Sent'
