@@ -85,7 +85,17 @@ This section will cover what is currently supported by the API and how they can 
         * FollowUser(Cookie, UserID)
         * UnfollowUser(Cookie, UserID)
         * BlockUser(Cookie, UserID)
-        * UnblocKUser(Cookie, UserID)
+        * UnblockUser(Cookie, UserID)
+        * SendFriendRequest(Cookie,UserID)
+        * Unfriend(Cookie,UserID)
+        * TotalFriends(Cookie)
+    * Group
+        * JoinGroup(Cookie,GroupID)
+        * LeaveGroup(Cookie,GroupID)
+        * GetFunds(Cookie,GroupID)
+        * PayGroupFunds(Cookie,GroupID,UserID,RobuxAmount)
+        * PayGroupPercentage(Cookie,GroupID,UserID,Percentage)
+        * PostGroupWall(Cookie,GroupID,Text)
 
 # Examples
 Below are examples of how to use each of the functions within robloxpy
