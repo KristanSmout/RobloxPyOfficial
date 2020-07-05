@@ -61,10 +61,12 @@ def GetOfflineFriends(UserID):
 def GetUserGroups(UserID):
     response = requests.get(UserAPI + str(UserID) + "/groups")
     FullList = []
+    IDList = []
     Grouplist = json.loads(response.text)
     for group in Grouplist:
         FullList.append(group['Name'])
-    return FullList
+        IDList.append(group['Id'])
+    return FullList,IDList
 
 def GetUserRAP(UserID):
     response = requests.get(RBXCityInventURL + str(UserID))

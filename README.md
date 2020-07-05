@@ -144,7 +144,8 @@ Output > ['SlimemingPlayz', 'E_xitium', 'Kawaii_Katicorn99', 'KatieeLouisee99', 
 * GetUserGroups(UserID) 
 ```python
 robloxpy.GetUserGroups(1368140) #Get a list of groups which the user belongs too
-Output > ['Simple Studio', 'BlackRock Studio', 'White Wolf Hounds', '🌶️Hot Pepper Clothes', 'Twisted Murdere r Official Group', 'StarCraft®', 'United Alliance Of Roblox', 'NEVER WALK ALONE']
+Output > (['Simple Studio', 'BlackRock Studio', 'White Wolf Hounds', '🌶️Hot Pepper Clothes', 'Twisted Murder er Official Group', 'StarCraft®', 'United Alliance Of Roblox', 'NEVER WALK ALONE'], [3297855, 847360, 1201505, 3206677
+ 1225381, 1132763, 14195, 916576])
 ```
 * # Limited-Functions
 These functions relate to getting the value of a user based on their limiteds
