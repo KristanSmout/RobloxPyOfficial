@@ -1,6 +1,9 @@
 # RobloxPyOfficial
  RobloxPy is a python API wrapper for the roblox web api's. This allows for quick and easy integration of these API's into a python project.
  
+ # Usage Agreement
+ This is completely free to use even comerically, however you must provide a link accessible somewhere for those that wish to find it back to this github repositry. You must also not claim this work as your own ensuring to reference back to this github page
+ 
  ## Table of Contents
 
 
