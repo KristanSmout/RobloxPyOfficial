@@ -71,8 +71,7 @@ def GetUserGroups(UserID):
 def GetUserRAP(UserID):
     response = requests.get(RBXCityInventURL + str(UserID))
     for data in response.json()['data']:
-        print(data)
-        return 'Test'
+        return data['recentAveragePrice']
         #return data['recentAveragePrice']
 
 def GetUserLimitedValue(UserID):
