@@ -15,9 +15,11 @@
             * [LimitedRelated](#Limited-Functions)
         * [Group Functions](#Group-Functions)
         * [Asset Functions](#Asset-Functions)
+        * [Game Functions](#Place-Functions)
     * [Internal Functions](#Internal-Functions)
         * [User Functions](#Internal-User-Functions)
         * [Group Functions](#Internal-Group-Functions)
+        * [Game Functions](#Internal-Game-Functions)
 
 # Getting-Started
 To use the wrapper you will need to download and import robloxpy into your current project. The project has not external requirements that is not included within the defaults of a python install.
@@ -73,6 +75,12 @@ This section will cover what is currently supported by the API and how they can 
         * GetGroupEnemies(GroupID)
     * Assets
         * CanManage(UserID,GroupID)
+    * Game
+        * GetUniverseFavourites(UniverseID)
+        * GetCurrentUniversePlayers(UniverseID)
+        * GetUniverseVisits(UniverseID)
+        * GetUniverseLikes(UniverseID)
+        * GetUniverseDislikes(UniverseID)
 
 * Internal
     * User
@@ -103,6 +111,13 @@ This section will cover what is currently supported by the API and how they can 
         * PayGroupFunds(Cookie,GroupID,UserID,RobuxAmount)
         * PayGroupPercentage(Cookie,GroupID,UserID,Percentage)
         * PostGroupWall(Cookie,GroupID,Text)
+        * ChangeGroupRank(Cookie,GroupID,UserID,RoleID)
+    * Game
+        * GetCurrentGamePlayers(Cookie,PlaceID)
+        * GetGameVisits(Cookie,PlaceID)
+        * GetGameLikes(Cookie,PlaceID)
+        * GetGameDislikes(Cookie,PlaceID)
+        * GetGameFavourites(Cookie,PlaceID)
 
 # Examples
 Below are examples of how to use each of the functions within robloxpy
@@ -243,6 +258,43 @@ robloxpy.CanManage(1368140,240351460)
 Output > True
 ```
 
+## Game-Functions
+These functions are to get data about roblox games, this functions require a universeID which can only be obtained when using a cookie. If you wish to automate this and instead use the GameID please use the [internal](#Internal-Game-Functions) version of these functions.
+
+GetCurrentUniversePlayers(UniverseID)
+```python
+robloxpy.GetCurrentUniversePlayers(113491250) #Get current player count of the universe with the ID of 113491250
+output > 6754
+```
+
+GetCurrentUniverseVisits(UniverseID)
+```python
+robloxpy.GetCurrentUniverseVisits(113491250) #Get the total visits of the universe with the ID of 113491250
+output > 896375390
+```
+
+GetUniverseFavourites(UniverseID)
+```python
+robloxpy.GetUniverseFavourites(113491250) #Get favourites of the universe with the ID of 113491250
+output > 3971956
+```
+
+GetUniverseLikes(UniverseID)
+```python
+robloxpy.GetUniverseLikes(113491250) #Get likes of the universe with the ID of 113491250
+output > 1515099
+```
+
+GetUniverseDislikes(UniverseID
+```python
+robloxpy.GetUniverseDislikes(113491250) #Get favourites of the universe with the ID of 113491250
+output > 113053
+```
+
+---
+---
+---
+---
 # Internal-Functions
 These functions require a cookie of the user account they wish to be run on as a variable. These functions allow support for both POST and GET requests allowing actions to be taken on an account.
 # Internal-User-Functions
@@ -380,3 +432,49 @@ Output > Sent
 robloxpy.PostGroupWall(ExampleCookie,916576,'Hello World') #Send a post to the wall of group ID 916576
 Output > Sent
 ```
+
+ChangeGroupRank(Cookie,GroupID,UserID,RoleID)
+```python
+robloxpy.ChangeGroupRank(ExampleCookie,916576,1368140,5725003) #Change User 1368140 Role in group 916576 to RoleID 5725003
+Output > Sent
+```
+## Internal-Game-Functions
+These functions require the use of a cookie to authenticate with the roblox server to allow it to get the UniverseID for games, if you already have the UniverseeID you can use the [external functions](#Game-Functions) above.
+
+* GetUniverseID(Cookie,GameID)
+```python
+robloxpy.GetUniverseID(ExampleCookie,292439477) #Convert GameID to UniverseID
+Output > 113491250
+```
+
+* GetCurrentGamePlayers(Cookie,GameID)
+```python
+robloxpy.GetCurrentGamePlayers(ExampleCookie,292439477) #Get current playercount of game
+Output > 6754
+```
+
+robloxpy.GetGameVisits(ExampleCookie,GameID)
+``` python
+robloxpy.GetGameVisits(ExampleCookie,292439477) #Get total visits of the game
+output > 896375390
+```
+
+* GetGameLikes(Cookie,GameID)
+```python
+robloxpy.GetGameLikes(ExampleCookie,292439477) #Get game likes
+Output > 1515099
+```
+
+* GetGameDislikes(Cookie,GameID)
+```python
+robloxpy.GetGameDislikes(ExampleCookie,292439477) #Get game dislikesD
+Output > 113053
+```
+
+* GetGameFavourites(Cookie,GameID)
+```python
+robloxpy.GetGameFavourites(ExampleCookie,292439477) #Get game favourites
+Output > 3971956
+```
+
+

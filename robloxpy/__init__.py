@@ -1,5 +1,7 @@
 import requests,json,time
 
+#Created and maintained by Kristan Smout
+#Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
 APIURL = "https://api.roblox.com/"
 SettingsURL = "https://www.roblox.com/my/settings/json"
@@ -7,6 +9,7 @@ MobileAPI = "https://www.roblox.com/mobileapi/"
 EconomyURL = "https://economy.roblox.com/v1/"
 FriendsURL = "https://friends.roblox.com/v1/"
 InventoryURL = "https://inventory.roblox.com/v2/assets/"
+GamesURL = "https://games.roblox.com/v1/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
 GroupAPI = APIURL + "groups/"
@@ -193,6 +196,43 @@ def GetSerialList(AssetID):
 
 #endregion
 
+
+#region External Place API's
+
+def GetUniverseData(UniverseID):
+    response = requests.get(GamesURL + 'games?universeIds=' + str(UniverseID))
+    return response.json()['data'][0]
+
+def GetUniverseVotes(UniverseID):
+    response = requests.get(GamesURL + 'games/votes?universeIds=' + str(UniverseID))
+    return response.json()['data'][0]
+
+def GetUniverseFavourites(UniverseID):
+    response = requests.get(GamesURL + 'games/' + str(UniverseID) + '/favorites/count')
+    return response.json()['favoritesCount']
+
+def GetCurrentUniversePlayers(UniverseID):
+    GameData = GetUniverseData(str(UniverseID))
+    return GameData['playing']
+
+def GetUniverseVisits(UniverseID):
+    GameData = GetUniverseData(str(UniverseID))
+    return GameData['visits']
+
+def GetUniverseLikes(UniverseID):
+    GetVotes = GetUniverseVotes(str(UniverseID))
+    return GetVotes['upVotes']
+
+def GetUniverseDislikes(UniverseID):
+    GetVotes = GetUniverseVotes(str(UniverseID))
+    return GetVotes['downVotes']
+
+
+
+#endregion
+
+
+
 #endregion
 
 
@@ -323,7 +363,6 @@ def SendMessage(Cookie,UserID,MessageSubject,Body):
                        'recipientid': str(UserID),
                        'cacheBuster': str(int(time.time()))
                })
-    print(Post)
     return Post
 #endregion
 
@@ -395,6 +434,47 @@ def PostGroupWall(Cookie,GroupID,Text):
     Post = session.post(GroupAPIV1 + str(GroupID) + '/wall/posts',data={'body': Text})
     return 'Sent'
 
+def ChangeGroupRank(Cookie,GroupID,UserID,roleId):
+    session = SetCookie(Cookie)
+    Patch = session.patch(GroupAPIV1 + str(GroupID) + '/users/' + str(UserID),data={'roleId' : roleId})
+    return 'Sent'
+#endregion
+
+
+#region Internal Place API
+
+def GetUniverseID(Cookie,PlaceID):
+    session = SetCookie(Cookie)
+    response = session.get(GamesURL + 'games/multiget-place-details?placeIds=' + str(PlaceID))
+    return response.json()[0]['universeId']
+
+def GetCurrentGamePlayers(Cookie,PlaceID):
+    UniverseID = GetUniverseID(Cookie,PlaceID)
+    GameData = GetUniverseData(UniverseID)
+    return GameData['playing']
+
+def GetGameVisits(Cookie,PlaceID):
+    UniverseID = GetUniverseID(Cookie,PlaceID)
+    GameData = GetUniverseData(UniverseID)
+    return GameData['visits']
+
+def GetGameLikes(Cookie,PlaceID):
+    UniverseID = GetUniverseID(Cookie,PlaceID)
+    return GetUniverseVotes(UniverseID)['upVotes']
+
+def GetGameDislikes(Cookie,PlaceID):
+    UniverseID = GetUniverseID(Cookie,PlaceID)
+    return GetUniverseVotes(UniverseID)['downVotes']
+
+def GetGameFavourites(Cookie,PlaceID):
+    UniverseID = GetUniverseID(Cookie,PlaceID)
+    response = requests.get(GamesURL + 'games/' + str(UniverseID) + '/favorites/count')
+    return response.json()['favoritesCount']
+    
+
+
+
 #endregion
 
 #endregion
+
