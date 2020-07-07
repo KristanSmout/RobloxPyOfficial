@@ -51,6 +51,7 @@ This section will cover what is currently supported by the API and how they can 
     * User
         * NameToID(UserName) 
         * GetName(UserID)
+        * DoesNameExist(UserName)
         * IsOnline(UserID)
         * GetFriends(UserID)
         * GetOnlineFriends(UserID)
@@ -118,6 +119,8 @@ This section will cover what is currently supported by the API and how they can 
         * GetGameLikes(Cookie,PlaceID)
         * GetGameDislikes(Cookie,PlaceID)
         * GetGameFavourites(Cookie,PlaceID)
+        * ChangeGroupShout(Cookie,GroupID,StatusString)
+        * ChangeGroupDescription(Cookie,GroupID,DescriptionString)
 
 # Examples
 Below are examples of how to use each of the functions within robloxpy
@@ -136,6 +139,12 @@ Output > 1368140
 ```python
 robloxpy.GetName(1368140) #Get the name of the roblox user with the ID of 1368140
 Output > kristan99
+```
+
+* DoesNameExist(UserName)
+```python
+robloxpy.DoesNameExist('kristan99') #Check if the username 'kristan99' is availible to take
+Output > Unavailible
 ```
 
 * IsOnline(UserID)
@@ -438,6 +447,18 @@ ChangeGroupRank(Cookie,GroupID,UserID,RoleID)
 robloxpy.ChangeGroupRank(ExampleCookie,916576,1368140,5725003) #Change User 1368140 Role in group 916576 to RoleID 5725003
 Output > Sent
 ```
+
+ChangeGroupShout(Cookie,GroupID,StatusString)
+```python
+robloxpy.ChangeGroupShout(ExampleCookie,916576,'This is a new group shout') #Set the group shout to 'This is a new group shout' in the group with the ID 916576
+Output > Sent
+```
+ChangeGroupDescription(Cookie,GroupID,DescriptionString)
+```python
+robloxpy.ChangeGroupDescription(ExampleCookie,916576,'This is a new group description') #Set the group shout to 'This is a new group description' in the group with the ID 916576
+Output > Sent
+```
+
 ## Internal-Game-Functions
 These functions require the use of a cookie to authenticate with the roblox server to allow it to get the UniverseID for games, if you already have the UniverseeID you can use the [external functions](#Game-Functions) above.
 

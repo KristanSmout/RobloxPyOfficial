@@ -12,6 +12,7 @@ InventoryURL = "https://inventory.roblox.com/v2/assets/"
 GamesURL = "https://games.roblox.com/v1/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
+UserAPIV1 = APIURL + "v1/users/"
 GroupAPI = APIURL + "groups/"
 GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
 
@@ -107,6 +108,15 @@ def GetUserTerribleDemandLimiteds(UserID):
     for data in response.json()['data']:
         return data['TerribleDemandItems']
 
+def DoesNameExist(UserName):
+    response = requests.get(UserAPI + 'get-by-username?username=' + str(UserName))
+    if('errorMessage' in response.text):
+        return ('Availible')
+    else:   
+        if(response.json()['Username'].lower() == UserName.lower()):
+            return('Unavailible')
+        elif (response.json()['Username'].lower() != UserName.lower()):
+            return('Availible')
 
 
 #endregion
@@ -230,8 +240,6 @@ def GetUniverseDislikes(UniverseID):
 
 
 #endregion
-
-
 
 #endregion
 
@@ -438,6 +446,19 @@ def ChangeGroupRank(Cookie,GroupID,UserID,roleId):
     session = SetCookie(Cookie)
     Patch = session.patch(GroupAPIV1 + str(GroupID) + '/users/' + str(UserID),data={'roleId' : roleId})
     return 'Sent'
+
+def ChangeGroupShout(Cookie,GroupID,StatusString):
+    session = SetCookie(Cookie)
+    Patch = session.patch(GroupAPIV1 + str(GroupID) + '/status',data={'message' : StatusString})
+    return 'Sent'
+
+def ChangeGroupDescription(Cookie,GroupID,DescriptionString):
+    session = SetCookie(Cookie)
+    Patch = session.patch(GroupAPIV1 + str(GroupID) + '/description',data={'description' : DescriptionString})
+    return 'Sent'
+
+
+
 #endregion
 
 
