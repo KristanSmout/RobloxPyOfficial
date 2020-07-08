@@ -74,6 +74,10 @@ Output > pip install robloxpy --upgrade
 This section will cover what is currently supported by the API and how they can be used
 
 # Features
+* RobloxPy
+  * CheckForUpdate()
+  * CheckVersion()
+  * HowToUpdate()
 * External
     * User
         * NameToID(UserName) 
@@ -84,6 +88,8 @@ This section will cover what is currently supported by the API and how they can 
         * GetOnlineFriends(UserID)
         * GetOfflineFriends(UserID)
         * GetUserGroups(UserID)
+        * DoesNameExist(UserName)
+        * IsBanned(UserID)
     * RAP
         * GetUserRap(UserID)
         * GetUserLimitedValue(UserID)
@@ -131,6 +137,7 @@ This section will cover what is currently supported by the API and how they can 
         * SendFriendRequest(Cookie,UserID)
         * Unfriend(Cookie,UserID)
         * TotalFriends(Cookie)
+        * GetBlockedUsers(Cookie)
     * Group
         * ClaimGroup(Cookie,GroupID)
         * JoinGroup(Cookie,GroupID)
@@ -203,6 +210,13 @@ robloxpy.GetUserGroups(1368140) #Get a list of groups which the user belongs too
 Output > (['Simple Studio', 'BlackRock Studio', 'White Wolf Hounds', '🌶️Hot Pepper Clothes', 'Twisted Murder er Official Group', 'StarCraft®', 'United Alliance Of Roblox', 'NEVER WALK ALONE'], [3297855, 847360, 1201505, 3206677
  1225381, 1132763, 14195, 916576])
 ```
+
+* IsBanned(UserID)
+```python
+robloxpy.IsBanned(1368140) # Get whether user ID belongs to a terminated account
+Output > False
+```
+
 * # Limited-Functions
 These functions relate to getting the value of a user based on their limiteds
 * GetUserRAP(UserID)
@@ -421,6 +435,13 @@ Output > sent
 ```python
 robloxpy.TotalFriends(ExampleCookie) #Total friends of the local user
 Output > 5
+```
+
+* GetBlockedUsers(Cookie)
+This function allows you to get just the ID of the users or also the names by parsing the returning data from when called
+```python
+robloxpy.GetBlockedUsers(ExampleCookie) #Get a list of ID's and Names of users blocked by the cookie account
+Output > [1267895826, 1604596527, 1731797857], ['MiguelXXcoolXXplayz', 'CaduboyYT', 'Edson5380']
 ```
 
 # Internal-Group-Functions

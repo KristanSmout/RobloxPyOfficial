@@ -3,7 +3,7 @@ import requests,json,time
 #Created and maintained by Kristan Smout
 #Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
-Version = '0.0.94'
+Version = '0.0.95'
 
 
 APIURL = "https://api.roblox.com/"
@@ -15,7 +15,7 @@ InventoryURL = "https://inventory.roblox.com/v2/assets/"
 GamesURL = "https://games.roblox.com/v1/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
 UserAPI = APIURL + "users/"
-UserAPIV1 = APIURL + "v1/users/"
+UserAPIV1 = 'https://users.roblox.com/v1/users/'
 GroupAPI = APIURL + "groups/"
 GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
 
@@ -87,6 +87,24 @@ def GetUserGroups(UserID):
         IDList.append(group['Id'])
     return FullList,IDList
 
+def DoesNameExist(UserName):
+    response = requests.get(UserAPI + 'get-by-username?username=' + str(UserName))
+    if('errorMessage' in response.text):
+        return ('Availible')
+    else:   
+        if(response.json()['Username'].lower() == UserName.lower()):
+            return('Unavailible')
+        elif (response.json()['Username'].lower() != UserName.lower()):
+            return('Availible')
+
+def IsBanned(UserID):
+   response = requests.get(UserAPIV1 + str(UserID))
+   return response.json()['isBanned']
+
+#endregion
+
+#region RAP
+
 def GetUserRAP(UserID):
     response = requests.get(RBXCityInventURL + str(UserID))
     for data in response.json()['data']:
@@ -122,16 +140,6 @@ def GetUserTerribleDemandLimiteds(UserID):
     response = requests.get(RBXCityInventURL + str(UserID))
     for data in response.json()['data']:
         return data['TerribleDemandItems']
-
-def DoesNameExist(UserName):
-    response = requests.get(UserAPI + 'get-by-username?username=' + str(UserName))
-    if('errorMessage' in response.text):
-        return ('Availible')
-    else:   
-        if(response.json()['Username'].lower() == UserName.lower()):
-            return('Unavailible')
-        elif (response.json()['Username'].lower() != UserName.lower()):
-            return('Availible')
 
 
 #endregion
@@ -387,6 +395,23 @@ def SendMessage(Cookie,UserID,MessageSubject,Body):
                        'cacheBuster': str(int(time.time()))
                })
     return Post
+
+def GetBlockedUsers(Cookie):
+    session = SetCookie(Cookie)
+    response = session.get(SettingsURL)
+    Data = response.json()['BlockedUsersModel']['BlockedUsers']
+    BlockedIDs = []
+    BlockedNames = []
+    
+    for User in Data:
+        BlockedIDs.append(User['uid'])
+        BlockedNames.append(User['Name'])
+    return BlockedIDs,BlockedNames
+
+
+print(GetBlockedUsers('_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_5187C6B96E7BB890EA6952B5CF09C41CB2CDD51868CAC12BA948286509B44822A1119B3DD41AFB8353ABAE08A2B6B30C9195D596BD15C547758EFD825C25376837EA7A85D06BBE60782312FB31720C695230AB697C014D74994C6980F0ABDBE5A696ED99A9937C583A21956DFFCB79D407249339B10EFE4943CB0D403688634C55A3619AF96C3EE53F814A7FFC9B29207926C4C96506C6478EFBD3012CA545C02CAD6335D3B31196A57D58BDD76186AA60DBE6F04E094CFA32A6E5155AB5A73C24A27BB6D300D57D7F4905B4B9FD9C8B55D3DC4A13E2D61BF3D0ECE33C2896782091EC2CFAFBFE29871E00525775D3F581A9D30D550848CA71236ACF64339901BD7033676469AFD3F4D2610C7ADC40F33DEBF50C006FD58A819510CC9A8620480FF705170CBF176FCF59C7CCE1DF830093BCBCA0'))
+
+
 #endregion
 
 
