@@ -7,6 +7,7 @@
 * [Getting Started](#Getting-Started)
   * [Prerequisites](#Prerequisites)
   * [Installation](#Installation)
+  * [RobloxPy Features](#RobloxPy)
 * [Usage](#Usage)
   * [Current Features](#Features)
   * [Usage Examples](#Examples)
@@ -41,6 +42,32 @@ pip install robloxpy
 If you wish to update robloxpy in the future you can also do this through pip
 ```python
 pip install robloxpy --upgrade
+```
+# RobloxPy
+RobloxPy includes some simple functions to help you get the information you need about it, these functions can be used as a check to ensure that the user is using a minimum version you deem necesarry for your RobloxPy project to work.
+
+* CheckForUpdate
+This function can provide two different outputs, one that the current version being used it the latest or the current version that is availible to update to
+```python
+robloxpy.CheckForUpdate()
+Output > You are up to date!
+```
+```python
+robloxpy.CheckForUpdate()
+Output > Version 0.0.94 is now availible
+```
+
+* CheckVersion
+```python
+robloxpy.CheckVersion()
+Output > 0.0.93
+```
+
+A function can also be called to give the user instructions on how to update RobloxPy. This function will provide the latest reccomended way to upgrade RobloxPy
+* HowToUpdate
+```python
+robloxpy.HowToUpdate()
+Output > pip install robloxpy --upgrade
 ```
 
 # Usage

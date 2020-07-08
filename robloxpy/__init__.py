@@ -3,6 +3,9 @@ import requests,json,time
 #Created and maintained by Kristan Smout
 #Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
+Version = '0.0.94'
+
+
 APIURL = "https://api.roblox.com/"
 SettingsURL = "https://www.roblox.com/my/settings/json"
 MobileAPI = "https://www.roblox.com/mobileapi/"
@@ -17,8 +20,20 @@ GroupAPI = APIURL + "groups/"
 GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
 
 
+#Internal
+def CheckForUpdate():
+    response = requests.get('https://pypi.org/pypi/robloxpy/json')
+    LatestVersion = response.json()['info']['version']
+    if(Version == LatestVersion):
+        return 'You are up to date!'
+    else:
+        return f'Version {LatestVersion} is now availible'
 
-
+def CheckVersion():
+    return Version
+    
+def HowToUpdate():
+    return 'pip install robloxpy --upgrade'
 
 #region External
 
