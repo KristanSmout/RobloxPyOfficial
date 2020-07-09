@@ -91,7 +91,11 @@ This section will cover what is currently supported by the API and how they can 
         * DoesNameExist(UserName)
         * IsBanned(UserID)
         * AccountAgeDays(UserID)
-        * AccountCreationYear(UserID)
+        * UserCreationDate(UserID)
+        * GetFollowingCount(UserID)
+        * GetFollowersCount(UserID)
+        * GetFollowers(UserID,Ammount)
+        * GetFollowing(UserID,Ammount)
     * RAP
         * GetUserRap(UserID)
         * GetUserLimitedValue(UserID)
@@ -236,6 +240,29 @@ robloxpy.UserCreationDate(1,'Year') # Request the year the account was created
 Output > 2006
 ```
 
+* GetFollowingCount(UserID)
+```python
+robloxpy.GetFollowingCount(1368140) #Get ammount of followers of user 1368140
+Output > 16
+```
+
+* GetFollowerCount(UserID)
+```python
+robloxpy.GetFollowingCount(1368140) #Get ammount of followers of user 1368140
+Output > 12578
+```
+
+* GetFollowing(UserID,Ammount)
+```python
+robloxpy.GetFollowing(1368140,10) # Get first 10 people being followed by 1368140
+Output > (['takeovertom', 'dino5aur', 'iClanTech', '1waffle1', 'ForyxeV', 'Imaginze', 'StoryBased', 'LoneTraveler', 'beanme100', 'enyahs7'], [1096520, 649206, 65797433, 75323, 9622035, 17256624, 27572897, 3304627, 485933, 336048])
+```
+
+* GetFollowers(UserID,Ammount)
+```python
+robloxpy.GetFollowing(1368140,10) # Get first 10 people being following user id 1368140
+Output > (['builderman', 'Gaming112', 'snowbeat54321', 'BobHag', 'lilmigithunter', 'UchihaSasukePat', 'Alessi7953', 'GarraSabakuno', 'jangofettt', 'Garty983chub'], [156, 1359952, 2918062, 3149494, 2899616, 2937573, 2754369, 2982496, 20169, 169558])
+```
 
 
 * # Limited-Functions

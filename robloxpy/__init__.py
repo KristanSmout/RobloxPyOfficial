@@ -3,7 +3,7 @@ import requests,json,time,datetime
 #Created and maintained by Kristan Smout
 #Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
-Version = '0.0.98'
+Version = '0.0.99'
 
 
 APIURL = "https://api.roblox.com/"
@@ -126,6 +126,80 @@ def AccountAgeDays(UserID):
     Days = str(Days).split(' ')
     return Days[0]
 
+def GetFollowingCount(UserID):
+    response = requests.get(FriendsURL + 'users/' + str(UserID) + '/followings/count')
+    try:
+        return response.json()['count']
+    except:
+        return 'UserID Invalid'
+
+def GetFollowersCount(UserID):
+    response = requests.get(FriendsURL + 'users/' + str(UserID) + '/followers/count')
+    try:
+        return response.json()['count']
+    except:
+        return 'UserID Invalid'
+    
+def GetFollowers(UserID,Ammount):
+    response = requests.get(FriendsURL + '/users/' + str(UserID) + '/followers?sortOrder=Asc&limit=100')
+    CurrentAmmount = 0
+    NameList = []
+    IDList = []
+    Cursor = 'None'
+    while Cursor !=  'null':
+        if(Cursor is None):
+            Cursor = 'null'
+        else:
+            try:
+                Cursor = response.json()['nextPageCursor']
+            except:
+                Cursor = 'null'
+        for Follower in response.json()['data']:
+            if(CurrentAmmount < Ammount):
+                NameList.append(Follower['name'])
+                IDList.append(Follower['id'])
+                CurrentAmmount = CurrentAmmount + 1
+            else:
+                return NameList,IDList
+        if(Cursor is None):
+            Cursor = 'null'
+        else:
+            try:
+                response = requests.get(FriendsURL + '/users/' + str(UserID) + '/followers?sortOrder=Asc&limit=100&cursor=' + str(Cursor))
+            except:
+                Cursor = 'null'
+    return NameList,IDList
+
+def GetFollowing(UserID,Ammount):
+    response = requests.get(FriendsURL + '/users/' + str(UserID) + '/followings?sortOrder=Asc&limit=100')
+    CurrentAmmount = 0
+    NameList = []
+    IDList = []
+    Cursor = 'None'
+    while Cursor !=  'null':
+        if(Cursor is None):
+            Cursor = 'null'
+        else:
+            try:
+                Cursor = response.json()['nextPageCursor']
+            except:
+                Cursor = 'null'
+        for Follower in response.json()['data']:
+            if(CurrentAmmount < Ammount):
+                NameList.append(Follower['name'])
+                IDList.append(Follower['id'])
+                CurrentAmmount = CurrentAmmount + 1
+            else:
+                return NameList,IDList
+        if(Cursor is None):
+            Cursor = 'null'
+        else:
+            try:
+                response = requests.get(FriendsURL + '/users/' + str(UserID) + '/followers?sortOrder=Asc&limit=100&cursor=' + str(Cursor))
+            except:
+                Cursor = 'null'
+    return NameList,IDList
+
 
 #endregion
 
@@ -174,11 +248,11 @@ def GetUserTerribleDemandLimiteds(UserID):
 
 def IsGroupOwned(GroupID):
     response = requests.get(GroupAPIV1 + str(GroupID))
-    
     if(str(response.json()['owner']) == 'None'):
         return False
     else:
         return True
+
 
 def GetGroupName(GroupID):
     response = requests.get(GroupAPIV1 + str(GroupID))
