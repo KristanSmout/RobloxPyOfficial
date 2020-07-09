@@ -140,6 +140,7 @@ This section will cover what is currently supported by the API and how they can 
         * Unfriend(Cookie,UserID)
         * TotalFriends(Cookie)
         * GetBlockedUsers(Cookie)
+        * SendMessage(Cookie,UserID,MessageSubject,Body)
     * Group
         * ClaimGroup(Cookie,GroupID)
         * JoinGroup(Cookie,GroupID)
@@ -462,6 +463,13 @@ This function allows you to get just the ID of the users or also the names by pa
 ```python
 robloxpy.GetBlockedUsers(ExampleCookie) #Get a list of ID's and Names of users blocked by the cookie account
 Output > [1267895826, 1604596527, 1731797857], ['MiguelXXcoolXXplayz', 'CaduboyYT', 'Edson5380']
+```
+
+* SendMessage(Cookie,UserID,MessageSubject,Body)
+```python
+robloxpy.* SendMessage(ExampleCookie,1368140,'Important Message','Hey I sent this message using robloxpy') #Send a message to the user of id 1368140 with the subject 'Important Message' and a body of text of 'Hey I sent this message using robloxpy'
+
+Output > Success
 ```
 
 # Internal-Group-Functions

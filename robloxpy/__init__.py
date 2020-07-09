@@ -3,7 +3,7 @@ import requests,json,time,datetime
 #Created and maintained by Kristan Smout
 #Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
-Version = '0.0.97'
+Version = '0.0.98'
 
 
 APIURL = "https://api.roblox.com/"
@@ -18,6 +18,7 @@ UserAPI = APIURL + "users/"
 UserAPIV1 = 'https://users.roblox.com/v1/users/'
 GroupAPI = APIURL + "groups/"
 GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
+PrivateMessageAPIV1 = "https://privatemessages.roblox.com/v1/"
 
 
 #Internal
@@ -415,15 +416,17 @@ def TotalFriends(Cookie):
     response = session.get(FriendsURL + 'my/friends/count')
     return response.json()['count']
 
-def SendMessage(Cookie,UserID,MessageSubject,Body):
+def SendMessage(Cookie,UserID,MessageSubject,Body): #Credit to Soul for documentation URL
+    LocalID = GetUserID(Cookie)
     session = SetCookie(Cookie)
-    Post = session.post('https://www.roblox.com/messages/send',data={
-                       'subject': MessageSubject,
-                       'body': Body,
-                       'recipientid': str(UserID),
-                       'cacheBuster': str(int(time.time()))
+    Post = session.post(PrivateMessageAPIV1 + 'messages/send/' ,data={
+                        'userId' : LocalID,
+                        'subject': MessageSubject,
+                        'body': Body,
+                        'recipientid': UserID,
                })
-    return Post
+    return Post.json()['shortMessage']
+    
 
 def GetBlockedUsers(Cookie):
     session = SetCookie(Cookie)
