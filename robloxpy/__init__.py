@@ -1,9 +1,9 @@
-import requests,json,time
+import requests,json,time,datetime
 
 #Created and maintained by Kristan Smout
 #Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
-Version = '0.0.96'
+Version = '0.0.97'
 
 
 APIURL = "https://api.roblox.com/"
@@ -101,8 +101,33 @@ def IsBanned(UserID):
    response = requests.get(UserAPIV1 + str(UserID))
    return response.json()['isBanned']
 
+def UserCreationDate(UserID,WantedData):
+    WantedData = WantedData.lower()
+    CreationDate = requests.get(UserAPIV1 + str(UserID)).json()['created']
+    CreationDate = CreationDate.split('T')
+    CreationDate = CreationDate[0].split('-')
+    
+    if(WantedData == ('year'.lower())):
+        return str(CreationDate[0])
+    elif(WantedData == 'month'.lower()):
+        return str(CreationDate[1])
+    elif(WantedData == 'day'.lower()):
+        return str(CreationDate[2])
+        
+
+def AccountAgeDays(UserID):
+    CreationDate = requests.get(UserAPIV1 + str(UserID)).json()['created']
+    CreationDate = CreationDate.split('T')
+    CreationDate = CreationDate[0].split('-')
+    CurrentDate = datetime.date.today()
+    CreationDate = datetime.date(int(CreationDate[0]),int(CreationDate[1]),int(CreationDate[2]))
+    Days = ((datetime.date.today()) - (CreationDate))
+    Days = str(Days).split(' ')
+    return Days[0]
+
+
 #endregion
-IsBanned(1)
+
 #region RAP
 
 def GetUserRAP(UserID):
@@ -347,7 +372,11 @@ def IsFollowing(Cookie,UserID):
 def FollowUser(Cookie,UserID):
     session = SetCookie(Cookie)
     Post = session.post('https://friends.roblox.com/v1/users/' + str(UserID) + '/follow',data={'targetUserID': UserID})
-    return Post.json()['success']
+    data = Post.json()
+    try:
+        return data['success']
+    except:
+        return data['errors']
 
 def UnfollowUser(Cookie,UserID):
     session = SetCookie(Cookie)

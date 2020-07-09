@@ -19,3 +19,4 @@ Upload.bat
 robloxpy/Test.py
 Test.py
 *.whl
+*.txt

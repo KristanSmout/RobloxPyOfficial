@@ -90,6 +90,8 @@ This section will cover what is currently supported by the API and how they can 
         * GetUserGroups(UserID)
         * DoesNameExist(UserName)
         * IsBanned(UserID)
+        * AccountAgeDays(UserID)
+        * AccountCreationYear(UserID)
     * RAP
         * GetUserRap(UserID)
         * GetUserLimitedValue(UserID)
@@ -165,7 +167,7 @@ These functions allow you to get data in regards to a specific user through the 
 
 * NameToID(UserName) 
 ```python
-robloxpy.NameToID(kristan99) #Get the UserID of the roblox user with the name kristan99
+robloxpy.NameToID('kristan99') #Get the UserID of the roblox user with the name kristan99
 Output > 1368140
 ```
 
@@ -216,6 +218,24 @@ Output > (['Simple Studio', 'BlackRock Studio', 'White Wolf Hounds', '🌶️Hot
 robloxpy.IsBanned(1368140) # Get whether user ID belongs to a terminated account
 Output > False
 ```
+
+* AccountAgeDays(UserID)
+```python
+robloxpy.AccountAgeDays(1) #How many days ago was the account with the ID or 1 created
+Output > 5246
+```
+
+* UserCreationDate(UserID,WantedData)
+The WantedData variable for this function is not case sensistive however it must be spelt correctly
+    * Year
+    * Month
+    * Day
+```python
+robloxpy.UserCreationDate(1,'Year') # Request the year the account was created
+Output > 2006
+```
+
+
 
 * # Limited-Functions
 These functions relate to getting the value of a user based on their limiteds
