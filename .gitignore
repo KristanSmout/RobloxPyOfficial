@@ -23,3 +23,5 @@ Test.py
 robloxpy-0.0.98/README.md
 build/bdist.win32/wheel/robloxpy-0.0.99.dist-info/WHEEL
 build/bdist.win32/wheel/robloxpy-0.0.99.dist-info/METADATA
+build/bdist.win32/wheel/robloxpy/__init__.py
+build/bdist.win32/wheel/robloxpy-0.1.0.dist-info/METADATA
