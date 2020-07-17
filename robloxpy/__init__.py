@@ -3,7 +3,7 @@ import requests,json,time,datetime
 #Created and maintained by Kristan Smout
 #Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
-Version = '0.1.3'
+Version = '0.1.5'
 
 
 APIURL = "https://api.roblox.com/"
