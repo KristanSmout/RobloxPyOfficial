@@ -844,9 +844,7 @@ def GetGameFavourites(Cookie,PlaceID):
         return response.json()['favoritesCount']
     except:
         return 'Error: ',CheckCookie(Cookie)
-    
 
-print(GetGameFavourites("jskdfjkhsdfsfdf",3476234))
 
 #endregion
 
