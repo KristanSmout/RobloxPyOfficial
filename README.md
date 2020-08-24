@@ -1,3 +1,4 @@
+
 # RobloxPyOfficial
  RobloxPy is a python API wrapper for the roblox web api's. This allows for quick and easy integration of these API's into a python project.
  
@@ -11,6 +12,7 @@
 * [Usage](#Usage)
   * [Current Features](#Features)
   * [Usage Examples](#Examples)
+	  * [Utilities](#Utilities)
     * [External Functions](#External-Functions)
         * [User Functions](#User-Functions)
             * [LimitedRelated](#Limited-Functions)
@@ -26,7 +28,9 @@
 To use the wrapper you will need to download and import robloxpy into your current project. The project has not external requirements that is not included within the defaults of a python install.
 
 ## Prerequisites
-N/A
+```python
+pip install requests
+```
 
 ## Installation
 Before you can import robloxpy you will first need to install it through pip
@@ -78,6 +82,9 @@ This section will cover what is currently supported by the API and how they can 
   * CheckForUpdate()
   * CheckVersion()
   * HowToUpdate()
+ * Utilities
+	 * SetProxy(ProxyIP)
+	 * CheckProxy(ProxyAddress) 
 * External
     * User
         * NameToID(UserName) 
@@ -166,6 +173,34 @@ This section will cover what is currently supported by the API and how they can 
 
 # Examples
 Below are examples of how to use each of the functions within robloxpy
+#Utilities
+These functions are used by other functions within the library, You can use these separately  if needed but you don't need to specifically call them to use them.
+
+# Utilities
+* ## Proxy Functions
+These functions are not needed to be used and can be called within functions in the last argument, they can also be used globally. When a proxy is set this will encompass all traffic in the application using this API even if any additional libraries do not support it.
+* SetProxy(ProxyIP)
+```python
+robloxpy.SetProxy('127.0.0.1:1111') #Set global proxy for the current application
+Output > None
+```
+* CheckProxy(ProxyAddress) 
+```python
+robloxpy.CheckProxy('127.0.0.1:1111') #Set and Check the shown address of the proxy address
+Output > 127.0.0.1
+```
+
+```python
+robloxpy.CheckProxy() #Check shown address of the currently used proxy
+Output > 127.0.0.1
+```
+
+All functions can be run through a proxy, by adding an additional variable for the proxy if it is desired.
+```python
+robloxpy.GetName(1368140,'127.0.0.1:1111') #Run the function through the proxy 127.0.0.1:1111
+Output > kristan99
+```
+
 # External-Functions
 These functions do not require any cookies can be used without any data, these are limited to GET based on what roblox provides
 * ## User-Functions
