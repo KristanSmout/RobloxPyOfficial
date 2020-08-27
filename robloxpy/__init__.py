@@ -1,13 +1,9 @@
-import requests
-import json
-import time
-import datetime
-import os
+import requests,json,time,datetime,os
 
 # Created and maintained by Kristan Smout
 # Github URL = https://github.com/KristanSmout/RobloxPyOfficial
 
-Version = '0.1.6'
+Version = '0.1.7'
 
 
 APIURL = "https://api.roblox.com/"
@@ -15,6 +11,7 @@ SettingsURL = "https://www.roblox.com/my/settings/json"
 MobileAPI = "https://www.roblox.com/mobileapi/"
 EconomyURL = "https://economy.roblox.com/v1/"
 FriendsURL = "https://friends.roblox.com/v1/"
+MarketURL = "https://api.roblox.com/marketplace/"
 InventoryURL = "https://inventory.roblox.com/v2/assets/"
 GamesURL = "https://games.roblox.com/v1/"
 RBXCityInventURL = "https://data.rbxcity.com/user-inventories/fetch/history/"
@@ -23,6 +20,7 @@ UserAPIV1 = 'https://users.roblox.com/v1/users/'
 GroupAPI = APIURL + "groups/"
 GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
 PrivateMessageAPIV1 = "https://privatemessages.roblox.com/v1/"
+AssetURL = "https://www.roblox.com/asset/"
 
 
 # Internal
@@ -56,7 +54,7 @@ def CheckProxy(proxyAddress=None):
     response = requests.get('https://api.ipify.org/?format=json')
     return response.json()['ip']
 
-#print(CheckProxy())
+
 #print(CheckProxy('144.217.101.245:3129'))
 
 # region External
@@ -443,8 +441,9 @@ def CanManage(UserID, AssetID, Proxy=None):
     except:
         return response.json()['ErrorMessage']
 
+#Limited Functions
 
-def GetSerialList(AssetID, Proxy=None):
+def GetSerialList(AssetID, Proxy=None): #IDK if it doesnt work or forgot to document
     SetProxy(Proxy)
     IsAll = False
     FullList = []
@@ -478,6 +477,42 @@ def GetSerialList(AssetID, Proxy=None):
         return FullList, Owners
     except:
         return response.json()['errors'][0]['message']
+
+def GetLimitedPriceData(LimitedID,Proxy=None): #Requested by Yak_Talk(583473349397839873)
+    SetProxy(Proxy)
+    response = requests.get(EconomyURL + '/assets/' + str(LimitedID) + '/resale-data')
+    return response.json()['priceDataPoints']
+
+def GetLimitedRemaining(LimitedID,Proxy=None):
+    SetProxy(Proxy)
+    response = requests.get(EconomyURL + '/assets/' + str(LimitedID) + '/resale-data')
+    return response.json()['numberRemaining']
+
+def GetLimitedTotal(LimitedID,Proxy=None):
+    SetProxy(Proxy)
+    response = requests.get(EconomyURL + '/assets/' + str(LimitedID) + '/resale-data')
+    return response.json()['assetStock']
+
+def GetLimitedSales(LimitedID,Proxy=None):
+    SetProxy(Proxy)
+    response = requests.get(EconomyURL + '/assets/' + str(LimitedID) + '/resale-data')
+    return response.json()['sales']
+
+def GetLimitedRAP(LimitedID,Proxy=None):
+    SetProxy(Proxy)
+    response = requests.get(EconomyURL + '/assets/' + str(LimitedID) + '/resale-data')
+    return response.json()['recentAveragePrice']
+
+def GetLimitedSalePrice(LimitedID,Proxy=None):
+    SetProxy(Proxy)
+    response = requests.get(EconomyURL + '/assets/' + str(LimitedID) + '/resale-data')
+    return response.json()['originalPrice']
+
+def GetLimitedChangePercentage(LimitedID,Proxy=None):
+    SetProxy(Proxy)
+    Change = round(((float(GetLimitedRAP(LimitedID))-GetLimitedSalePrice(LimitedID))/GetLimitedSalePrice(LimitedID))*100,3)
+    return str(Change) + '%'
+
 
 
 # endregion
