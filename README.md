@@ -1,6 +1,9 @@
 
-# RobloxPyOfficial
- RobloxPy is a python API wrapper for the roblox web api's. This allows for quick and easy integration of these API's into a python project.
+
+# RobloxPyOfficial - v0.1.7
+ RobloxPy is a python API wrapper for the roblox web api's. This allows for quick and easy integration of these API's into a python project. This library also supports global proxy integration
+
+<sup><center>If you need any help using RobloxPy or want to request an additional please join the discord server at https://www.kristansmout.com/discord</center></sup>
  
  ## Table of Contents
 
@@ -18,6 +21,7 @@
             * [LimitedRelated](#Limited-Functions)
         * [Group Functions](#Group-Functions)
         * [Asset Functions](#Asset-Functions)
+	        * [Limited Assets](#Limited-Assets) 
         * [Game Functions](#Place-Functions)
     * [Internal Functions](#Internal-Functions)
         * [User Functions](#Internal-User-Functions)
@@ -316,6 +320,10 @@ Output > 389539
 ```
 
 All the functions to determine the quality of a users items are the same just switching the type each providing a similiar output
+* GetUserNoDemandLimiteds(UserID)
+* GetUserLowDemandLimiteds(UserID)
+* GetUserNormalDemandLimiteds(UserID)
+* GetUserGoodDemandLimiteds(UserID)
 * GetUserTerribleDemandLimiteds(UserID)
 ```python
 robloxpy.GetUserTerribleDemandLimiteds(1368140) # Get limiteds considered terrible and undesired by the user with the ID 1368140
@@ -390,6 +398,50 @@ These functions allow you to get data in regards to a specific asset
 ```python
 robloxpy.CanManage(1368140,240351460)
 Output > True
+```
+## Limited-Assets
+These functions allow you to get information about Limited and LimitedU items that are sold on the roblox marketplace.
+
+* GetLimitedPriceData(LimitedID)
+```python
+robloxpy.GetLimitedPriceData(102627682)
+output> [{'value': 4880, 'date': '2020-08-25T05:00:00Z'}, {'value': 4879, 'date': '2020-08-23T05:00:00Z'}, {'value': 2300, 'date': '2020-08-22T05:00:00Z'}, {'value': 4850, 'date': '2020-08-21T05:00:00Z'}, {'value': 4250, 'date': '2020-08-20T05:00:00Z'}, {'value': 1000, 'date': '2020-08-18T05:00:00Z'}, {'value': 4224, 'date': '2020-08-17T05:00:00Z'}, {'value': 4249, 'date': '2020-08-15T05:00:00Z'}, {'value': 4249, 'date': '2020-08-12T05:00:00Z'}, {'value': 1847, 'date': '2020-08-08T05:00:00Z'}, {'value': 3077, 'date': '2020-08-05T05:00:00Z'}, {'value': 4000, 'date': '2020-07-26T05:00:00Z'}, {'value': 4498, 'date': '2020-07-23T05:00:00Z'}, {'value': 1891, 'date': '2020-07-20T05:00:00Z'}, {'value': 2249, 'date': '2020-07-17T05:00:00Z'}, {'value': 4200, 'date': '2020-07-12T05:00:00Z'}, {'value': 2021, 'date': '2020-07-11T05:00:00Z'}, {'value': 1660, 'date': '2020-07-08T05:00:00Z'}, {'value': 4849, 'date': '2020-07-06T05:00:00Z'}, {'value': 4300, 'date': '2020-07-05T05:00:00Z'}, {'value': 4290, 'date': '2020-07-04T05:00:00Z'}, {'value': 2627, 'date': '2020-07-02T05:00:00Z'}, {'value': 4224, 'date': '2020-06-30T05:00:00Z'}, {'value': 4254, 'date': '2020-06-29T05:00:00Z'}, {'value': 3500, 'date': '2020-06-28T05:00:00Z'}, {'value': 3000, 'date': '2020-06-21T05:00:00Z'}, {'value': 4289, 'date': '2020-06-19T05:00:00Z'}, {'value': 2000, 'date': '2020-06-16T05:00:00Z'}, {'value': 2129, 'date': '2020-06-15T05:00:00Z'}, {'value': 3400, 'date': '2020-06-13T05:00:00Z'}, {'value': 1500, 'date': '2020-06-12T05:00:00Z'}, {'value': 2150, 'date': '2020-06-10T05:00:00Z'}, {'value': 2500, 'date': '2020-06-08T05:00:00Z'}, {'value': 1505, 'date': '2020-06-03T05:00:00Z'}, {'value': 2000, 'date': '2020-05-30T05:00:00Z'}, {'value': 1999, 'date': '2020-05-27T05:00:00Z'}, {'value': 1850, 'date': '2020-05-26T05:00:00Z'}, {'value': 899, 'date': '2020-05-24T05:00:00Z'}, {'value': 1000, 'date': '2020-05-23T05:00:00Z'}, {'value': 1500, 'date': '2020-05-19T05:00:00Z'}, {'value': 899, 'date': '2020-05-13T05:00:00Z'}, {'value': 1323, 'date': '2020-05-07T05:00:00Z'}, {'value': 1181, 'date': '2020-05-03T05:00:00Z'}, {'value': 1222, 'date': '2020-04-30T05:00:00Z'}, {'value': 1000, 'date': '2020-04-28T05:00:00Z'}, {'value': 999, 'date': '2020-04-26T05:00:00Z'}, {'value': 1000, 'date': '2020-04-24T05:00:00Z'}, {'value': 1998, 'date': '2020-04-21T05:00:00Z'}, {'value': 1500, 'date': '2020-04-20T05:00:00Z'}, {'value': 977, 'date': '2020-04-19T05:00:00Z'}, {'value': 900, 'date': '2020-04-18T05:00:00Z'}, {'value': 1535, 'date': '2020-04-15T05:00:00Z'}, {'value': 920, 'date': '2020-04-13T05:00:00Z'}, {'value': 1143, 'date': '2020-04-11T05:00:00Z'}, {'value': 1999, 'date': '2020-04-10T05:00:00Z'}, {'value': 1499, 'date': '2020-04-05T05:00:00Z'}, {'value': 1599, 'date': '2020-03-30T05:00:00Z'}, {'value': 1500, 'date': '2020-03-29T05:00:00Z'}, {'value': 1350, 'date': '2020-03-25T05:00:00Z'}, {'value': 1366, 'date': '2020-03-24T05:00:00Z'}, {'value': 1100, 'date': '2020-03-23T05:00:00Z'}, {'value': 999, 'date': '2020-03-20T05:00:00Z'}, {'value': 1900, 'date': '2020-03-14T05:00:00Z'}, {'value': 1200, 'date': '2020-03-11T05:00:00Z'}, {'value': 1999, 'date': '2020-03-04T06:00:00Z'}, {'value': 1200, 'date': '2020-02-28T06:00:00Z'}]
+```
+
+*GetLimitedRemaining(LimitedID)
+```python
+robloxpy.GetLimitedRemaining(102627682)
+output > 0
+```
+
+*GetLimitedTotal(LimitedID)
+```python
+robloxpy.GetLimitedTotal(102627682)
+output > 750
+```
+
+*GetLimitedSales(LimitedID)
+```python
+robloxpy.GetLimitedSales(102627682)
+output > 747
+```
+
+*GetLimitedRAP(LimitedID)
+```python
+robloxpy.GetLimitedRAP(102627682)
+output > 3606
+```
+
+*GetLimitedSalePrice(LimitedID)
+```python
+robloxpy.GetLimitedSalePrice(102627682)
+output > 500
+```
+
+*GetLimitedChangePercentage(LimitedID)
+```python
+robloxpy.GetLimitedChangePercentage(102627682)
+output > 621.2%
 ```
 
 ## Game-Functions
