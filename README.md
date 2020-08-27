@@ -126,6 +126,13 @@ This section will cover what is currently supported by the API and how they can 
         * GetGroupEnemies(GroupID)
     * Assets
         * CanManage(UserID,GroupID)
+    * Limiteds
+	    * GetLimitedRemaining(LimitedID)
+	    * GetLimitedTotal(LimitedID)
+	    * GetLimitedSales(LimitedID)
+	    * GetLimitedRAP(LimitedID)
+	    * GetLimitedSalePrice(LimitedID)
+	    * GetLimitedChangePercentage(LimitedID)
     * Game
         * GetUniverseFavourites(UniverseID)
         * GetCurrentUniversePlayers(UniverseID)
