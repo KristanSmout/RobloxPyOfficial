@@ -108,7 +108,7 @@ This section will cover what is currently supported by the API and how they can 
         * GetFollowers(UserID,Ammount)
         * GetFollowing(UserID,Ammount)
     * RAP
-        * GetUserRap(UserID)
+        * GetUserRAP(UserID)
         * GetUserLimitedValue(UserID)
         * GetUserNoDemandLimiteds(UserID)
         * GetUserLowDemandLimiteds(UserID)
@@ -316,7 +316,7 @@ Output > (['builderman', 'Gaming112', 'snowbeat54321', 'BobHag', 'lilmigithunter
 These functions relate to getting the value of a user based on their limiteds
 * GetUserRAP(UserID)
 ```python
-robloxpy.GetUserRap(1368140) # Get the RAP of the user with the ID 1368140
+robloxpy.GetUserRAP(1368140) # Get the RAP of the user with the ID 1368140
 Output > 298202
 ```
 
