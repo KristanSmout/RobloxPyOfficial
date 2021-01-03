@@ -11,7 +11,10 @@ def Claim(GroupID):
 def Join(GroupID):
      try:
         response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/users")
-        return 'Sent'
+        if('captcha test' inresponse.content.decode()): #Credit https://github.com/PurityWasHere
+            return 'Captcha'
+        else:
+            return 'Join request sent'
     except:
         return response.json()
 
