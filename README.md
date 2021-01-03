@@ -1,7 +1,8 @@
 
 # RobloxPy 0.2.0
 RobloxPy is a python API wrapper for roblox. This allows for quick and easy integration of these API's into a python project.
-<sup><center>If you need any help using RobloxPy or want to request an additional please join the discord server at https://www.kristansmout.com/discord
+<sup><center>If you need any help using RobloxPy or want to request an additional please join the discord server at 
+	https://www.kristansmout.com/discord
 Accept The Terms & Create a ticket</center></sup>
 
 ## Table Of Contents
