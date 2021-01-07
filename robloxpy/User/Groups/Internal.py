@@ -2,16 +2,16 @@ import robloxpy.Utils as Utils
 import robloxpy.User.Internal as Internal
 
 def Claim(GroupID):
-     try:
+    try:
         response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/claim-ownership")
         return 'Sent'
     except:
         return response.json()
 
 def Join(GroupID):
-     try:
+    try:
         response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/users")
-        if('captcha test' inresponse.content.decode()): #Credit https://github.com/PurityWasHere
+        if('captcha test' in response.content.decode()): #Credit https://github.com/PurityWasHere
             return 'Captcha'
         else:
             return 'Join request sent'
@@ -19,7 +19,7 @@ def Join(GroupID):
         return response.json()
 
 def Leave(GroupID):
-     try:
+    try:
         response = Internal.CurrentCookie.delete(f"{Utils.GroupAPIV1}{GroupID}/users/{Internal.UserID}")
         return 'Sent'
     except:
@@ -38,14 +38,14 @@ def Payout(GroupID,targetUserID,RobuxAmount):
             "PayoutType": "FixedAmount",
             "Recipients": [
                 {
-                    "recipientId": str(UserID),
+                    "recipientId": str(targetUserID),
                     "recipientType": "User",
                     "amount": str(RobuxAmount)
                 }
             ]
         }
-        response = Internal.CurrentCookie.post(f"{utils.GroupAPIV1}{GroupID}/payouts", json=data)
-        if(Post.status_code == 200):
+        response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/payouts", json=data)
+        if(response.status_code == 200):
             return 'Sent'
         else:
             return response.json()
@@ -58,14 +58,14 @@ def PercentagePayout(GroupID,targetUserID,Percentage):
             "PayoutType": "Percentage",
             "Recipients": [
                 {
-                    "recipientId": str(UserID),
+                    "recipientId": str(targetUserID),
                     "recipientType": "User",
                     "amount": str(Percentage)
                 }
             ]
         }
-        response = Internal.CurrentCookie.post(f"{utils.GroupAPIV1}{GroupID}/payouts", json=data)
-        if(Post.status_code == 200):
+        response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/payouts", json=data)
+        if(response.status_code == 200):
             return 'Sent'
         else:
             return response.json()
@@ -74,28 +74,28 @@ def PercentagePayout(GroupID,targetUserID,Percentage):
 
 def SendWallPost(GroupID,PostText):
     try:
-        response = Internal.CurrentCookie.post(f"{GroupAPIV1}{GroupID}/wall/posts", data={'body': PostText})
+        response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/wall/posts", data={'body': PostText})
         return 'Sent'
     except:
         return response.json()
 
 def SendGroupShout(GroupID,ShoutText):
     try:
-        response = Internal.CurrentCookie.patch(f"{GroupAPIV1}{GroupID}/status", data={'message': ShoutText})
+        response = Internal.CurrentCookie.patch(f"{Utils.GroupAPIV1}{GroupID}/status", data={'message': ShoutText})
         return 'Sent'
     except:
         return response.json()
 
 def ChangeDescription(GroupID, DescriptionText):
     try:
-        response = Internal.CurrentCookie.patch(f"{GroupAPIV1}{GroupID}/description", data={'description': DescriptionText})
+        response = Internal.CurrentCookie.patch(f"{Utils.GroupAPIV1}{GroupID}/description", data={'description': DescriptionText})
         return 'Sent'
     except:
         return response.json()
 
 def ChangeRank(targetUserID,GroupID,RoleID):
     try:
-        response = Internal.CurrentCookie.patch(f"{GroupAPIV1}{GroupID}/users/{targetUserID}", data={'roleId': roleId})
+        response = Internal.CurrentCookie.patch(f"{Utils.GroupAPIV1}{GroupID}/users/{targetUserID}", data={'roleId': RoleID})
         return 'Sent'
     except:
         return response.json()

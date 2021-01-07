@@ -13,12 +13,12 @@ def GetID(Username):
         return response.json()['errorMessage']
 
 def GetUserName(UserID):
-    response = requests.get(Utils.UserAPI + f"{str(UserID)}")
     """
     Returns the username of a user based on the ID
     """
+    response = requests.get(Utils.UserAPI + f"{str(UserID)}")
     try:
-        return response.json()['displayName']
+        return response.json()['Username']
     except:
         return "Unable to convert ID"
 
