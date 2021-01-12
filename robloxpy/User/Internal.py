@@ -288,7 +288,7 @@ def GetBlockedUsers():
     [UserID],[UserName]
     """
     try:
-        response = CurrentCookie.post(f"{Utils.SettingsURL}userblock/block?userId={str(targetUserID)}", data={'targetUserID': targetUserID})
+        response = CurrentCookie.get(f"{Utils.SettingsURL}")
         Data = response.json()['BlockedUsersModel']['BlockedUsers']
         BlockedIDs = []
         BlockedNames = []
