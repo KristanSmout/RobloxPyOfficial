@@ -1,4 +1,5 @@
 import robloxpy.Utils as Utils
+import requests
 
 
 def GetUniverseData(UniverseID):

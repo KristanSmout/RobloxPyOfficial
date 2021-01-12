@@ -20,11 +20,12 @@ Inventory1URL = "https://inventory.roblox.com/v1/users/"
 SettingsURL = "https://www.roblox.com/my/settings/json"
 PrivateMessageAPIV1 = "https://privatemessages.roblox.com/v1/"
 GamesAPI = "https://games.roblox.com/v1/"
+GamesAPIV2 = "https://develop.roblox.com/v2/"
 GameAuthUrl = "https://auth.roblox.com/v1/authentication-ticket/"
 
 
 
-Version = "0.2.4"
+Version = "0.2.5"
 WIP = "Not Implemented Yet"
 
 def CheckForUpdate():

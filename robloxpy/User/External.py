@@ -1,6 +1,5 @@
 import requests,json,datetime
-from .. import Utils as Utils
-from . import Friends as Friends 
+from robloxpy import Utils as Utils
 def GetID(Username):
     """
     Returns the ID of a user based on the username
@@ -167,3 +166,13 @@ def GetStatus(UserID):
     """
     response = requests.get(Utils.UserAPIV1 + f"{str(UserID)}/status")
     return response.json()['status']
+
+def DoesNameExist(Username):
+    response = requests.get(Utils.UserAPIV1 + 'get-by-username?username=' + str(Username))
+    if('errorMessage' in response.text):
+        return ('Availible')
+    else:
+        if(response.json()['Username'].lower() == Username.lower()):
+            return('Unavailible')
+        elif (response.json()['Username'].lower() != Username.lower()):
+            return('Availible')

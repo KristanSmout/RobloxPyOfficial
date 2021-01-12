@@ -4,8 +4,8 @@ import robloxpy.Game.External as External
 
 def GetUniverseID(PlaceID):
     try:
-         response = session.get(f"{Utils.GamesAPI}games/multiget-place-details?placeIds={str(PlaceID)}")
-         try:
+        response = session.get(f"{Utils.GamesAPI}games/multiget-place-details?placeIds={str(PlaceID)}")
+        try:
             return response.json()['data'][0]
         except:
             return 'Universe Not Found'
@@ -46,5 +46,11 @@ def GetGameFavourites(PlaceID):
     try:
         UniverseID = GetUniverseID(PlaceID)
         return GetUniverseFavourites(UniverseID)
+    except:
+        return GameData
+
+def GetGameMaxServerCount(PlaceID):
+    try:
+        response = req
     except:
         return GameData

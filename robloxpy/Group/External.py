@@ -1,6 +1,17 @@
 import requests,json
 from robloxpy import Utils as Utils
 
+
+global Owner
+global Name
+global isOwned
+global Description
+global Shout
+global Roles
+global isPublic
+global isBc
+
+
 def IsGroupOwned(GroupID):
     """
     Returns whether a group is owned
