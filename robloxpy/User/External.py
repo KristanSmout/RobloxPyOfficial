@@ -149,6 +149,7 @@ def GetLimiteds(UserID):
     Please be aware this function can take some time to run depending on internet speed and how many limiteds a user owns
     """
     Limiteds = []
+    IDs = []
     Cursor = ""
     Done = False
     while(Done == False):
@@ -163,15 +164,18 @@ def GetLimiteds(UserID):
             for Item in Items["data"]:
                 try:
                     Limited = Item['name']
+                    ID = Item['assetId']
                     Limiteds.append(Limited)
+                    IDs.append(ID)
                 except:
                     Limiteds = Limiteds
+                    IDs = IDs
             if(response.json()['nextPageCursor'] == 'None'):
                 Done = True
             
         except Exception as ex:
             Done = True
-    return(Limiteds)
+    return(Limiteds,IDs)
 
 def GetBust(UserID,Width = 420, Height = 420):
     """

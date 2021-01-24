@@ -25,7 +25,7 @@ GameAuthUrl = "https://auth.roblox.com/v1/authentication-ticket/"
 
 
 
-Version = "0.2.7"
+Version = "0.2.8"
 WIP = "Not Implemented Yet"
 
 def CheckForUpdate():
