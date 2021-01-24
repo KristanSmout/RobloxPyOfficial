@@ -22,8 +22,8 @@ elif(HasRequests == False and HasJson == True):
 elif(HasJson == False):
     print("Python installation error | json missing")
 
-import robloxpy.Utils as Utils
-import robloxpy.Game as Game
-import robloxpy.User as User
-import robloxpy.Market as Market    
-import robloxpy.Group as Group
+#import robloxpy.Utils as Utils
+#import robloxpy.Game as Game
+#import robloxpy.User as User
+#import robloxpy.Market as Market    
+#import robloxpy.Group as Group
