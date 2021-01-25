@@ -25,7 +25,7 @@ GameAuthUrl = "https://auth.roblox.com/v1/authentication-ticket/"
 
 
 
-Version = "0.2.8"
+Version = "0.2.9"
 WIP = "Not Implemented Yet"
 
 def CheckForUpdate():
@@ -45,11 +45,15 @@ def GetVersion():
     """
     return Version
 
-def UpdateInstructions():
+def UpdateInstructions(Version = "Latest"):
     """
     Provides Instructions to update robloxpy
     """
-    return "Update robloxpy through pip using following command: \n'pip install robloxpy --upgrade'"
+    Version = str(Version)
+    if(Version == "Latest"):
+        return "Update robloxpy through pip using following command: \n'pip install robloxpy --upgrade'"
+    else:
+        return f"This software is intended to work on robloxpy version {Version} please install using the following command \n'pip install robloxpy=={Version}'\n If you get an error with this command the developer of this tool has not provided a valid version"
 
 def SetProxy(ProxyIP):
     """
