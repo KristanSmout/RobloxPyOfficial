@@ -93,7 +93,7 @@ def ChangeDescription(GroupID, DescriptionText):
     except:
         return response.json()
 
-def ChangeRank(targetUserID,GroupID,RoleID):
+def ChangeRank(GroupID,targetUserID,RoleID):
     try:
         response = Internal.CurrentCookie.patch(f"{Utils.GroupAPIV1}{GroupID}/users/{targetUserID}", data={'roleId': RoleID})
         return 'Sent'

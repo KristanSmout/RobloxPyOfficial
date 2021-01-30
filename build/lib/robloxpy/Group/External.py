@@ -16,7 +16,7 @@ def IsGroupOwned(GroupID):
     """
     Returns whether a group is owned
     """
-    response = requests.get(GroupAPIV1 + str(GroupID))
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
         if(str(response.json()['Owner']) == 'None'):
             return False

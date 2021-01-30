@@ -204,10 +204,13 @@ def GetStatus(UserID):
 
 def DoesNameExist(Username):
     response = requests.get(Utils.UserAPIV1 + 'get-by-username?username=' + str(Username))
-    if('errorMessage' in response.text):
-        return ('Availible')
-    else:
-        if(response.json()['Username'].lower() == Username.lower()):
-            return('Unavailible')
-        elif (response.json()['Username'].lower() != Username.lower()):
-            return('Availible')
+    try:
+        if('errorMessage' in response.text):
+            return ('Availible')
+        else:
+            if(response.json()['Username'].lower() == Username.lower()):
+                return('Unavailible')
+            elif (response.json()['Username'].lower() != Username.lower()):
+                return('Availible')
+    except:
+        return response.json()
