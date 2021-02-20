@@ -117,7 +117,7 @@ def GetMemberCount(GroupID):
     """
     Returns a count of how many users are in a group
     """
-    response = requests.get(Utils.GroupAPIV1 + f"groups/{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + f"{GroupID}")
     try:
         return response.json()['memberCount']
     except:
@@ -127,7 +127,7 @@ def isPublic(GroupID):
     """
     Returns if a group is public to join
     """
-    response = requests.get(Utils.GroupAPIV1 + f"groups/{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + f"{GroupID}")
     try:
         return response.json()['publicEntryAllowed']
     except:
@@ -137,7 +137,7 @@ def isBCOnly(GroupID):
     """
     Returns if a group is Builderclub Only
     """
-    response = requests.get(Utils.GroupAPIV1 + f"groups/{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + f"{GroupID}")
     try:
         return response.json()['isBuildersClubOnly']
     except:
@@ -153,7 +153,7 @@ def GetMembersList(GroupID, Limit = (999999999999)):
     IDList = []
     CurrentAmount = 0
     Cursor = 'None'
-    response = requests.get(Utils.GroupAPIV1 + (f"groups/{GroupID}/users?SortOrder=Asc&limit=100"))
+    response = requests.get(Utils.GroupAPIV1 + (f"{GroupID}/users?SortOrder=Asc&limit=100"))
     try:
         while (Cursor != 'null'):
             if(Cursor is None):
@@ -190,7 +190,7 @@ def GetMembersinRoleList(GroupID,RoleID,Limit= (999999999999)):
     IDList = []
     CurrentAmount = 0
     Cursor = 'None'
-    response = requests.get(Utils.GroupAPIV1 + (f"groups/{GroupID}/roles/{RoleID}/users?SortOrder=Asc&limit=100"))
+    response = requests.get(Utils.GroupAPIV1 + (f"{GroupID}/roles/{RoleID}/users?SortOrder=Asc&limit=100"))
     #return response.json()
     try:
         while (Cursor != 'null'):

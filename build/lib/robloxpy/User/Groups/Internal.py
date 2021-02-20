@@ -27,7 +27,7 @@ def Leave(GroupID):
 
 def GetFunds(GroupID):
     try:
-        response = Internal.CurrentCookie.delete(f"{Utils.EconomyURL}/groups/{GroupID}/currency/")
+        response = Internal.CurrentCookie.get(f"{Utils.EconomyURL}/groups/{GroupID}/currency/")
         return response.json()['robux']
     except:
         return response.json()
@@ -99,8 +99,6 @@ def ChangeRank(GroupID,targetUserID,RoleID):
         return 'Sent'
     except:
         return response.json()
-
-
 
 
 

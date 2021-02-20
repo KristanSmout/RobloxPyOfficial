@@ -11,7 +11,7 @@ FriendsAPI = "https://friends.roblox.com/v1/users/"
 APIURL = "https://api.roblox.com/"
 UserAPI = "https://api.roblox.com/users/"
 UserAPIV1 = "https://users.roblox.com/v1/users/"
-GroupAPIV1 = "https://groups.roblox.com/v1//groups/"
+GroupAPIV1 = "https://groups.roblox.com/v1/groups/"
 GroupAPIV2 = "https://groups.roblox.com/v2/"
 EconomyURL = "https://economy.roblox.com/v1/"
 EconomyURLV2 = "https://economy.roblox.com/v2/"
@@ -25,7 +25,7 @@ GameAuthUrl = "https://auth.roblox.com/v1/authentication-ticket/"
 
 
 
-Version = "0.2.9"
+Version = "0.2.20"
 WIP = "Not Implemented Yet"
 
 def CheckForUpdate():
