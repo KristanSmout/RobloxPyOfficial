@@ -46,7 +46,7 @@ def IsOnline(UserID):
     """
     Returns whether a user is online
     """
-    response = requests.get(Utils.UserAPI + str(UserID))
+    response = requests.get(Utils.UserAPI + str(UserID) +"/onlinestatus")
     try:
         return response.json()['IsOnline']
     except:
