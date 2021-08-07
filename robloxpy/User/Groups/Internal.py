@@ -1,14 +1,15 @@
 import robloxpy.Utils as Utils
 import robloxpy.User.Internal as Internal
+from typing import Union
 
-def Claim(GroupID: int) -> str:
+def Claim(GroupID: int) -> Union[str, dict]:
     try:
         response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/claim-ownership")
         return 'Sent'
     except:
         return response.json()
 
-def Join(GroupID: int) -> str:
+def Join(GroupID: int) -> Union[str, dict]:
     try:
         response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/users")
         if('captcha test' in response.content.decode()): #Credit https://github.com/PurityWasHere
@@ -18,21 +19,21 @@ def Join(GroupID: int) -> str:
     except:
         return response.json()
 
-def Leave(GroupID: int) -> str:
+def Leave(GroupID: int) -> Union[str, dict]:
     try:
         response = Internal.CurrentCookie.delete(f"{Utils.GroupAPIV1}{GroupID}/users/{Internal.UserID}")
         return 'Sent'
     except:
         return response.json()
 
-def GetFunds(GroupID: int) -> int:
+def GetFunds(GroupID: int) -> Union[int, dict]:
     try:
         response = Internal.CurrentCookie.get(f"{Utils.EconomyURL}/groups/{GroupID}/currency/")
         return response.json()['robux']
     except:
         return response.json()
 
-def Payout(GroupID: int, targetUserID: int, RobuxAmount: int) -> str:
+def Payout(GroupID: int, targetUserID: int, RobuxAmount: int) -> Union[str, dict]:
     try:
         data = {
             "PayoutType": "FixedAmount",
@@ -52,7 +53,7 @@ def Payout(GroupID: int, targetUserID: int, RobuxAmount: int) -> str:
     except Exception as e:
         return e
 
-def PercentagePayout(GroupID: int, targetUserID: int, Percentage: int) -> str:
+def PercentagePayout(GroupID: int, targetUserID: int, Percentage: int) -> Union[str, dict]:
     try:
         data = {
             "PayoutType": "Percentage",
@@ -72,28 +73,28 @@ def PercentagePayout(GroupID: int, targetUserID: int, Percentage: int) -> str:
     except Exception as e:
         return e
 
-def SendWallPost(GroupID: int, PostText: str) -> str:
+def SendWallPost(GroupID: int, PostText: str) -> Union[str, dict]:
     try:
         response = Internal.CurrentCookie.post(f"{Utils.GroupAPIV1}{GroupID}/wall/posts", data={'body': PostText})
         return 'Sent'
     except:
         return response.json()
 
-def SendGroupShout(GroupID: int, ShoutText: str) -> str:
+def SendGroupShout(GroupID: int, ShoutText: str) -> Union[str, dict]:
     try:
         response = Internal.CurrentCookie.patch(f"{Utils.GroupAPIV1}{GroupID}/status", data={'message': ShoutText})
         return 'Sent'
     except:
         return response.json()
 
-def ChangeDescription(GroupID: int, DescriptionText: str) -> str:
+def ChangeDescription(GroupID: int, DescriptionText: str) -> Union[str, dict]:
     try:
         response = Internal.CurrentCookie.patch(f"{Utils.GroupAPIV1}{GroupID}/description", data={'description': DescriptionText})
         return 'Sent'
     except:
         return response.json()
 
-def ChangeRank(GroupID: int, targetUserID: int, RoleID: int) -> str:
+def ChangeRank(GroupID: int, targetUserID: int, RoleID: int) -> Union[str, dict]:
     try:
         response = Internal.CurrentCookie.patch(f"{Utils.GroupAPIV1}{GroupID}/users/{targetUserID}", data={'roleId': RoleID})
         return 'Sent'

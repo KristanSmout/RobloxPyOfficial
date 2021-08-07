@@ -1,5 +1,6 @@
 import requests,json
 from robloxpy import Utils as Utils
+from typing import Union
 
 def GetAll(UserID: int) -> list:
     """
@@ -13,7 +14,7 @@ def GetAll(UserID: int) -> list:
         FullList.append(friend['displayName'])
     return FullList
 
-def GetCount(UserID: int) -> int:
+def GetCount(UserID: int) -> Union[int, str]:
     """
     Returns the total number of friends a user has
     """
@@ -23,7 +24,7 @@ def GetCount(UserID: int) -> int:
     except:
         return response.json()['errors'][0]['message']
 
-def GetOnline(UserID: int) -> list:
+def GetOnline(UserID: int) -> Union[list, str]:
     """
     Returns a full list of a users friends that are currently online
     """
@@ -38,7 +39,7 @@ def GetOnline(UserID: int) -> list:
     except:
         return response.json()['errors'][0]['message']
 
-def GetOffline(UserID: int) -> list:
+def GetOffline(UserID: int) -> Union[list, str]:
     """
     Returns a full list of a users friends that are currently offline
     """
@@ -53,7 +54,7 @@ def GetOffline(UserID: int) -> list:
     except:
         return response.json()['errors'][0]['message']
 
-def GetFollowerCount(UserID: int) -> int:
+def GetFollowerCount(UserID: int) -> Union[int, str]:
     """
     Returns a count of how many users a person is following
     """
@@ -102,7 +103,7 @@ def GetFollowers(UserID: int, Amount: int) -> tuple:
     except:
         return NameList, IDList
 
-def GetFollowingCount(UserID: int) -> int:
+def GetFollowingCount(UserID: int) -> Union[int, str]:
     """
     Returns a count of how many users a person is following
     """

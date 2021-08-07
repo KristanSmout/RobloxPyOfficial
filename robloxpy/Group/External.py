@@ -1,7 +1,8 @@
 import requests,json
 from robloxpy import Utils as Utils
+from typing import Union
 
-def IsGroupOwned(GroupID: int) -> bool:
+def IsGroupOwned(GroupID: int) -> Union[bool, str]:
     """
     Returns whether a group is owned
     """
@@ -54,7 +55,7 @@ def GetEmblem(GroupID: int) -> str:
     except:
         return response.json()['errors'][0]['message']
 
-def GetRoles(GroupID: int) -> tuple:
+def GetRoles(GroupID: int) -> Union[tuple, dict]:
     """
     Returns the roles and ranks of a group
 
@@ -72,7 +73,7 @@ def GetRoles(GroupID: int) -> tuple:
     except:
         return response.json()
 
-def GetAllies(GroupID: int) -> list:
+def GetAllies(GroupID: int) -> Union[list, str]:
     """
     Returns a list of groups that are allies
     """
@@ -87,7 +88,7 @@ def GetAllies(GroupID: int) -> list:
     except:
         return response.json()['errors'][0]['message']
 
-def GetEnemies(GroupID: int) -> list:
+def GetEnemies(GroupID: int) -> Union[list, str]:
     """
     Returns a list of groups that are enemies
     """
@@ -102,7 +103,7 @@ def GetEnemies(GroupID: int) -> list:
     except:
         return response.json()['errors'][0]['message']
 
-def GetMemberCount(GroupID: int) -> int:
+def GetMemberCount(GroupID: int) -> Union[int, str]:
     """
     Returns a count of how many users are in a group
     """
@@ -112,7 +113,7 @@ def GetMemberCount(GroupID: int) -> int:
     except:
         return response.json()['errors'][0]['message']
 
-def isPublic(GroupID: int) -> bool:
+def isPublic(GroupID: int) -> Union[bool, str]:
     """
     Returns if a group is public to join
     """
@@ -122,7 +123,7 @@ def isPublic(GroupID: int) -> bool:
     except:
         return response.json()['errors'][0]['message']
 
-def isBCOnly(GroupID: int) -> True:
+def isBCOnly(GroupID: int) -> Union[bool, str]:
     """
     Returns if a group is Builderclub Only
     """
@@ -132,7 +133,7 @@ def isBCOnly(GroupID: int) -> True:
     except:
         return response.json()['errors'][0]['message']
 
-def GetMembersList(GroupID: int, Limit :int = (999999999999)) -> tuple:
+def GetMembersList(GroupID: int, Limit :int = (999999999999)) -> Union[tuple, str]:
     """
     Returns a full list of group members
 
@@ -170,7 +171,7 @@ def GetMembersList(GroupID: int, Limit :int = (999999999999)) -> tuple:
     except:
         return response.json()['errors'][0]['message']
 
-def GetMembersinRoleList(GroupID: int, RoleID: int, Limit: int = 999999999999) -> tuple:
+def GetMembersinRoleList(GroupID: int, RoleID: int, Limit: int = 999999999999) -> Union[tuple, str]:
     """
     Returns a list of users in a specific role
     [Username],[ID]

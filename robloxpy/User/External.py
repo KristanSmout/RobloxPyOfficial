@@ -1,6 +1,7 @@
 import requests,json,datetime
 from robloxpy import Utils as Utils
-def GetID(Username: str) -> int:
+from typing import Union
+def GetID(Username: str) -> Union[int, str]:
     """
     Returns the ID of a user based on the username
     """
@@ -21,7 +22,7 @@ def GetUserName(UserID: int) -> str:
     except:
         return "Unable to convert ID"
 
-def UsernameHistory(UserID: int) -> list:
+def UsernameHistory(UserID: int) -> Union[list, str]:
     """
     Returns an array of previous usernames as user has had
     """
@@ -42,7 +43,7 @@ def UsernameHistory(UserID: int) -> list:
             Done = True
     return PastNames
 
-def IsOnline(UserID: int) -> bool:
+def IsOnline(UserID: int) -> Union[bool, str]:
     """
     Returns whether a user is online
     """
@@ -52,7 +53,7 @@ def IsOnline(UserID: int) -> bool:
     except:
         return 'User not found'
 
-def Isbanned(UserID: int) -> bool:
+def Isbanned(UserID: int) -> Union[bool, str]:
     """
     Returns if a user account is currently banned
     """
@@ -202,7 +203,7 @@ def GetStatus(UserID: int) -> str:
     response = requests.get(Utils.UserAPIV1 + f"{str(UserID)}/status")
     return response.json()['status']
 
-def DoesNameExist(Username: str) -> str:
+def DoesNameExist(Username: str) -> Union[str, dict]:
     response = requests.get(Utils.APIURL + 'users/get-by-username?username=' + str(Username))
     try:
         if('errorMessage' in response.text):

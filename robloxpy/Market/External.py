@@ -1,7 +1,8 @@
 import requests,json
 from robloxpy import Utils as Utils
+from typing import Union
 
-def CanManageAsset(UserID: int, AssetID: int) -> bool:
+def CanManageAsset(UserID: int, AssetID: int) -> Union[bool, str]:
     """
     Returns whether a user can manage an asset
     """

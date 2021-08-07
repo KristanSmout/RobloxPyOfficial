@@ -1,6 +1,7 @@
 import requests,json,random,webbrowser
 from time import time
 from robloxpy import Utils as Utils
+from typing import Union
 
 RawCookie = None
 UserID = None
@@ -232,7 +233,7 @@ def GetDetails(Details: bool = True) -> str:
         ReceiveNewsletter = None
         return "Data Not Wanted"
 
-def isFollowing(targetUserID: int) -> bool:
+def isFollowing(targetUserID: int) -> Union[bool, str]:
     """
     Checks if the current account is following a user
     """
@@ -242,7 +243,7 @@ def isFollowing(targetUserID: int) -> bool:
     except Exception as e:
         return e
 
-def FollowUser(targetUserID: int) -> bool:
+def FollowUser(targetUserID: int) -> Union[bool, str]:
     """
     Follows a user
     """
@@ -255,7 +256,7 @@ def FollowUser(targetUserID: int) -> bool:
     except Exception as e:
         return e
 
-def UnfollowUser(targetUserID: int) -> dict:
+def UnfollowUser(targetUserID: int) -> Union[dict, str]:
     """
     unfollows a user
     """
@@ -268,7 +269,7 @@ def UnfollowUser(targetUserID: int) -> dict:
     except Exception as e:
         return response.json()
 
-def BlockUser(targetUserID: int) -> bool:
+def BlockUser(targetUserID: int) -> Union[bool, str]:
     """
     Blocks a user
     """
@@ -281,7 +282,7 @@ def BlockUser(targetUserID: int) -> bool:
     except Exception as e:
         return response.json()
 
-def GetBlockedUsers() -> tuple:
+def GetBlockedUsers() -> Union[tuple, dict]:
     """
     Returns users which are blocked
 
@@ -300,7 +301,7 @@ def GetBlockedUsers() -> tuple:
     except:
         return response.json()
 
-def UnblockUser(targetUserID: int) -> dict:
+def UnblockUser(targetUserID: int) -> Union[bool, dict]:
     """
     unblocks a user
     """
@@ -314,7 +315,7 @@ def UnblockUser(targetUserID: int) -> dict:
     except Exception as e:
         return response.json()
 
-def SendMessage(targetUserID: int, Subject: str, Body: str) -> str:
+def SendMessage(targetUserID: int, Subject: str, Body: str) -> Union[str, dict]:
     response = None
     try:
         response = CurrentCookie.post(Utils.PrivateMessageAPIV1 + 'messages/send/', data={
