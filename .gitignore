@@ -11,7 +11,7 @@ setup.py
 build/lib/robloxpy/__init__.py
 dist/robloxpy-0.0.5-py3-none-any.whl
 robloxpy/.vscode/settings.json
-robloxpy/__pycache__/__init__.cpython-37.pyc
+robloxpy/__pycache__/
 robloxpy/Cookie.txt
 robloxpy/Testing.py
 dist/robloxpy-0.0.6-py3-none-any.whl

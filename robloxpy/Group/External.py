@@ -65,11 +65,13 @@ def GetRoles(GroupID: int) -> Union[tuple, dict]:
     try:
         FullList = []
         RankList = []
+        IdList = []
         GroupRanks = response.json()['roles']
         for Rank in GroupRanks:
             FullList.append((Rank['name']))
             RankList.append((Rank['rank']))
-        return FullList,RankList
+            IdList.append((Rank['id']))
+        return FullList,RankList,IdList
     except:
         return response.json()
 
@@ -164,7 +166,7 @@ def GetMembersList(GroupID: int, Limit :int = (999999999999)) -> Union[tuple, st
                 Cursor = 'null'
             else:
                 try:
-                    response = requests.get(Utils.GroupAPIV1 + (f"groups/{GroupID}/users?SortOrder=Asc&limit=100&cursor={Cursor}"))
+                    response = requests.get(Utils.GroupAPIV1 + (f"{GroupID}/users?SortOrder=Asc&limit=100&cursor={Cursor}"))
                 except:
                     Cursor = 'null'
         return MemberList, IDList
@@ -202,7 +204,7 @@ def GetMembersinRoleList(GroupID: int, RoleID: int, Limit: int = 999999999999) -
                 Cursor = 'null'
             else:
                 try:
-                    response = requests.get(Utils.GroupAPIV1 + (f"groups/{GroupID}/roles/{RoleID}/users?SortOrder=Asc&limit=100&cursor={Cursor}"))
+                    response = requests.get(Utils.GroupAPIV1 + (f"{GroupID}/roles/{RoleID}/users?SortOrder=Asc&limit=100&cursor={Cursor}"))
                 except:
                     Cursor = 'null'
         return MemberList, IDList
