@@ -1,7 +1,8 @@
 import robloxpy.Utils as Utils
 import robloxpy.User.Internal as Internal
+from typing import Union
 
-def SendFriendRequest(targetUserID):
+def SendFriendRequest(targetUserID: int) -> Union[bool, dict]:
     """
     Send a friend request to the target
     """
@@ -14,7 +15,7 @@ def SendFriendRequest(targetUserID):
     except Exception as e:
         return response.json()
 
-def Unfriend(targetUserID):
+def Unfriend(targetUserID: int) -> Union[bool, dict]:
     """
     Unfriend the target user
     """
@@ -27,7 +28,7 @@ def Unfriend(targetUserID):
     except Exception as e:
         return response.json()
 
-def TotalFriends():
+def TotalFriends() -> Union[int, dict]:
     """
     Returns the total amount of friends
     """

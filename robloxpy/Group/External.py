@@ -1,149 +1,139 @@
 import requests,json
 from robloxpy import Utils as Utils
+from typing import Union
 
-
-global Owner
-global Name
-global isOwned
-global Description
-global Shout
-global Roles
-global isPublic
-global isBc
-
-
-def IsGroupOwned(GroupID):
+def IsGroupOwned(GroupID: int) -> Union[bool, str]:
     """
     Returns whether a group is owned
     """
     response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
-        if(str(response.json()['Owner']) == 'None'):
+        if(str(response.json()['owner']) == 'None'):
             return False
         else:
             return True
     except:
         return response.json()['errors'][0]['message']
 
-def GetName(GroupID):
+def GetName(GroupID: int) -> str:
     """
     Returns the name of a group
     """
-    response = requests.get(Utils.APIURL + f"groups/{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
-        return response.json()['Name']
+        return response.json()['name']
     except:
         return response.json()['errors'][0]['message']
 
-def GetOwner(GroupID):
+def GetOwner(GroupID: int) -> str:
     """
     Returns the name of the owner of a group
     """
-    response = requests.get(Utils.APIURL + f"groups/{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
-        return response.json()['Owner']
+        return response.json()['owner']['username']
     except:
         return response.json()['errors'][0]['message']
 
-def GetDescription(GroupID):
+def GetDescription(GroupID: int) -> str:
     """
     Returns the description of a group
     """
-    response = requests.get(Utils.APIURL + f"groups/{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
-        return response.json()['Description']
+        return response.json()['description']
     except:
         return response.json()['errors'][0]['message']
 
-def GetEmblem(GroupID):
+def GetEmblem(GroupID: int) -> str:
     """
     Returns the URL of the group emblem
     """
-    response = requests.get(Utils.APIURL + f"groups/{GroupID}")
+    response = requests.get(Utils.ThumnnailAPIV1 + f"groups/icons?groupIds={GroupID}&size=420x420&format=Png&isCircular=true")
     try:
-        return response.json()['EmblemUrl']
+        return response.json()['data'][0]['imageUrl']
     except:
         return response.json()['errors'][0]['message']
 
-def GetRoles(GroupID):
+def GetRoles(GroupID: int) -> Union[tuple, dict]:
     """
     Returns the roles and ranks of a group
 
     [Role Names],[Role Ranks]
     """
-    response = requests.get(Utils.APIURL + f"groups/{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID) +"/roles")
     try:
         FullList = []
         RankList = []
-        GroupRanks = response.json()['Roles']
+        GroupRanks = response.json()['roles']
         for Rank in GroupRanks:
-            FullList.append((Rank['Name']))
-            RankList.append((Rank['Rank']))
+            FullList.append((Rank['name']))
+            RankList.append((Rank['rank']))
         return FullList,RankList
     except:
         return response.json()
 
-def GetAllies(GroupID):
+def GetAllies(GroupID: int) -> Union[list, str]:
     """
     Returns a list of groups that are allies
     """
-    response = requests.get(Utils.APIURL + f"groups/{GroupID}/allies")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID) +"/relationships/allies")
     try:
         FullList = []
         Grouplist = json.loads(response.text)
-        Grouplist = Grouplist['Groups']
+        Grouplist = Grouplist['relatedGroups']
         for group in Grouplist:
-            FullList.append(group['Name'])
+            FullList.append(group['name'])
         return FullList
     except:
         return response.json()['errors'][0]['message']
 
-def GetEnemies(GroupID):
+def GetEnemies(GroupID: int) -> Union[list, str]:
     """
     Returns a list of groups that are enemies
     """
-    response = requests.get(Utils.APIURL + f"groups/{GroupID}/enemies")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID) +"/relationships/enemies")
     try:
         FullList = []
         Grouplist = json.loads(response.text)
-        Grouplist = Grouplist['Groups']
+        Grouplist = Grouplist['relatedGroups']
         for group in Grouplist:
-            FullList.append(group['Name'])
+            FullList.append(group['name'])
         return FullList
     except:
         return response.json()['errors'][0]['message']
 
-def GetMemberCount(GroupID):
+def GetMemberCount(GroupID: int) -> Union[int, str]:
     """
     Returns a count of how many users are in a group
     """
-    response = requests.get(Utils.GroupAPIV1 + f"{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
         return response.json()['memberCount']
     except:
         return response.json()['errors'][0]['message']
 
-def isPublic(GroupID):
+def isPublic(GroupID: int) -> Union[bool, str]:
     """
     Returns if a group is public to join
     """
-    response = requests.get(Utils.GroupAPIV1 + f"{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
         return response.json()['publicEntryAllowed']
     except:
         return response.json()['errors'][0]['message']
 
-def isBCOnly(GroupID):
+def isBCOnly(GroupID: int) -> Union[bool, str]:
     """
     Returns if a group is Builderclub Only
     """
-    response = requests.get(Utils.GroupAPIV1 + f"{GroupID}")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID))
     try:
         return response.json()['isBuildersClubOnly']
     except:
         return response.json()['errors'][0]['message']
 
-def GetMembersList(GroupID, Limit = (999999999999)):
+def GetMembersList(GroupID: int, Limit :int = (999999999999)) -> Union[tuple, str]:
     """
     Returns a full list of group members
 
@@ -181,7 +171,7 @@ def GetMembersList(GroupID, Limit = (999999999999)):
     except:
         return response.json()['errors'][0]['message']
 
-def GetMembersinRoleList(GroupID,RoleID,Limit= (999999999999)):
+def GetMembersinRoleList(GroupID: int, RoleID: int, Limit: int = 999999999999) -> Union[tuple, str]:
     """
     Returns a list of users in a specific role
     [Username],[ID]

@@ -1,7 +1,8 @@
 import requests,json
 from robloxpy import Utils as Utils
+from typing import Union
 
-def GetAll(UserID):
+def GetAll(UserID: int) -> list:
     """
     Returns a full list of a users friends
     """
@@ -13,7 +14,7 @@ def GetAll(UserID):
         FullList.append(friend['displayName'])
     return FullList
 
-def GetCount(UserID):
+def GetCount(UserID: int) -> Union[int, str]:
     """
     Returns the total number of friends a user has
     """
@@ -23,7 +24,7 @@ def GetCount(UserID):
     except:
         return response.json()['errors'][0]['message']
 
-def GetOnline(UserID):
+def GetOnline(UserID: int) -> Union[list, str]:
     """
     Returns a full list of a users friends that are currently online
     """
@@ -38,7 +39,7 @@ def GetOnline(UserID):
     except:
         return response.json()['errors'][0]['message']
 
-def GetOffline(UserID):
+def GetOffline(UserID: int) -> Union[list, str]:
     """
     Returns a full list of a users friends that are currently offline
     """
@@ -53,7 +54,7 @@ def GetOffline(UserID):
     except:
         return response.json()['errors'][0]['message']
 
-def GetFollowerCount(UserID):
+def GetFollowerCount(UserID: int) -> Union[int, str]:
     """
     Returns a count of how many users a person is following
     """
@@ -63,7 +64,7 @@ def GetFollowerCount(UserID):
     except:
         return response.json()['errors'][0]['message']
 
-def GetFollowers(UserID,Amount):
+def GetFollowers(UserID: int, Amount: int) -> tuple:
     """
     Returns a full list of people that the user follows
 
@@ -102,7 +103,7 @@ def GetFollowers(UserID,Amount):
     except:
         return NameList, IDList
 
-def GetFollowingCount(UserID):
+def GetFollowingCount(UserID: int) -> Union[int, str]:
     """
     Returns a count of how many users a person is following
     """
@@ -112,7 +113,7 @@ def GetFollowingCount(UserID):
     except:
         return response.json()['errors'][0]['message']
 
-def GetFollowing(UserID,Amount):
+def GetFollowing(UserID: int, Amount: int) -> tuple:
     """
     Returns a full list of people that follow the user
 
