@@ -26,7 +26,7 @@ ThumnnailAPIV1 = "https://thumbnails.roblox.com/v1/"
 
 
 
-Version = "0.2.20"
+Version = "0.2.21"
 WIP = "Not Implemented Yet"
 
 def CheckForUpdate() -> str:
