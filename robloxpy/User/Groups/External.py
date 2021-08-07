@@ -1,7 +1,7 @@
 import requests,json
 from robloxpy import Utils as Utils
 
-def GetGroups(UserID):
+def GetGroups(UserID: int) -> tuple:
     """
     Returns the list of groups a user is in
     [Name],[ID]

@@ -1,7 +1,7 @@
 import robloxpy.Utils as Utils
 import robloxpy.User.Internal as Internal
 
-def SendFriendRequest(targetUserID):
+def SendFriendRequest(targetUserID: int) -> bool:
     """
     Send a friend request to the target
     """
@@ -14,7 +14,7 @@ def SendFriendRequest(targetUserID):
     except Exception as e:
         return response.json()
 
-def Unfriend(targetUserID):
+def Unfriend(targetUserID: int) -> bool:
     """
     Unfriend the target user
     """
@@ -27,7 +27,7 @@ def Unfriend(targetUserID):
     except Exception as e:
         return response.json()
 
-def TotalFriends():
+def TotalFriends() -> int:
     """
     Returns the total amount of friends
     """

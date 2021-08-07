@@ -2,7 +2,7 @@ import requests,json
 import robloxpy.User.Internal as Internal
 import robloxpy.Utils as Utils
 
-def BuyItem(MarketID):
+def BuyItem(MarketID: int) -> str:
     Data = requests.get(f"https://api.roblox.com/marketplace/productinfo?assetId={MarketID}").json()
     sellerId = Data['Creator']['Id']
     Price = Data['PriceInRobux']

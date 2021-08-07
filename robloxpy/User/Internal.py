@@ -47,7 +47,7 @@ IsAgeDownEnabled = None
 ReceiveNewsletter = None
 
 
-def SetCookie(Cookie,Details = True):
+def SetCookie(Cookie: str,Details: bool = True) -> str:
     """
     Set the current cookie for internal commands, if you wish to only perform an action set 'Details' to 'False' to prevent un-needed requests being made.
     """
@@ -73,7 +73,7 @@ def SetCookie(Cookie,Details = True):
     except:
         return "Error Setting Cookie"
 
-def GetDetails(Details = True):
+def GetDetails(Details: bool = True) -> str:
     """
     Internal function to get the details of the current cookie, can be used if you have statements to determine if you want the details or not
     """
@@ -232,7 +232,7 @@ def GetDetails(Details = True):
         ReceiveNewsletter = None
         return "Data Not Wanted"
 
-def isFollowing(targetUserID):
+def isFollowing(targetUserID: int) -> bool:
     """
     Checks if the current account is following a user
     """
@@ -242,7 +242,7 @@ def isFollowing(targetUserID):
     except Exception as e:
         return e
 
-def FollowUser(targetUserID):
+def FollowUser(targetUserID: int) -> bool:
     """
     Follows a user
     """
@@ -255,7 +255,7 @@ def FollowUser(targetUserID):
     except Exception as e:
         return e
 
-def UnfollowUser(targetUserID):
+def UnfollowUser(targetUserID: int) -> dict:
     """
     unfollows a user
     """
@@ -268,7 +268,7 @@ def UnfollowUser(targetUserID):
     except Exception as e:
         return response.json()
 
-def BlockUser(targetUserID):
+def BlockUser(targetUserID: int) -> bool:
     """
     Blocks a user
     """
@@ -281,7 +281,7 @@ def BlockUser(targetUserID):
     except Exception as e:
         return response.json()
 
-def GetBlockedUsers():
+def GetBlockedUsers() -> tuple:
     """
     Returns users which are blocked
 
@@ -300,7 +300,7 @@ def GetBlockedUsers():
     except:
         return response.json()
 
-def UnblockUser(targetUserID):
+def UnblockUser(targetUserID: int) -> dict:
     """
     unblocks a user
     """
@@ -314,7 +314,7 @@ def UnblockUser(targetUserID):
     except Exception as e:
         return response.json()
 
-def SendMessage(targetUserID,Subject,Body):
+def SendMessage(targetUserID: int, Subject: str, Body: str) -> str:
     response = None
     try:
         response = CurrentCookie.post(Utils.PrivateMessageAPIV1 + 'messages/send/', data={
@@ -327,7 +327,7 @@ def SendMessage(targetUserID,Subject,Body):
     except Exception as e:
         return response.json()
 
-def JoinGame(PlaceId):
+def JoinGame(PlaceId: int):
     BrowserID = random.randint(10000000000, 99999999999)
     webbrowser.open(f"roblox-player:1+launchmode:play+gameinfo:{Gamesession}+launchtime:{int(time()*1000)}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGame%26browserTrackerId%3D{BrowserID}%26placeId%3D{PlaceId}%26isPlayTogetherGame%3Dfalse+browsertrackerid:{BrowserID}+robloxLocale:en_us+gameLocale:en_us")
 

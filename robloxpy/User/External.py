@@ -1,6 +1,6 @@
 import requests,json,datetime
 from robloxpy import Utils as Utils
-def GetID(Username):
+def GetID(Username: str) -> int:
     """
     Returns the ID of a user based on the username
     """
@@ -11,7 +11,7 @@ def GetID(Username):
     except:
         return response.json()['errorMessage']
 
-def GetUserName(UserID):
+def GetUserName(UserID: int) -> str:
     """
     Returns the username of a user based on the ID
     """
@@ -21,7 +21,7 @@ def GetUserName(UserID):
     except:
         return "Unable to convert ID"
 
-def UsernameHistory(UserID):
+def UsernameHistory(UserID: int) -> list:
     """
     Returns an array of previous usernames as user has had
     """
@@ -42,7 +42,7 @@ def UsernameHistory(UserID):
             Done = True
     return PastNames
 
-def IsOnline(UserID):
+def IsOnline(UserID: int) -> bool:
     """
     Returns whether a user is online
     """
@@ -52,7 +52,7 @@ def IsOnline(UserID):
     except:
         return 'User not found'
 
-def Isbanned(UserID):
+def Isbanned(UserID: int) -> bool:
     """
     Returns if a user account is currently banned
     """
@@ -62,7 +62,7 @@ def Isbanned(UserID):
     except:
         return 'User not found'
 
-def GetDescription(UserID):
+def GetDescription(UserID: int) -> str:
     """
     Returns the description of a given user
     """
@@ -72,7 +72,7 @@ def GetDescription(UserID):
     except:
         return 'User not found'
 
-def GetAge(UserID):
+def GetAge(UserID: int) -> str:
     """
     Returns the user's age in days
     """
@@ -88,7 +88,7 @@ def GetAge(UserID):
     except:
         return (Utils.UserAPIV1 + str(UserID))
 
-def CreationDate(UserID, Style = 0):
+def CreationDate(UserID: int, Style: int = 0) -> str:
     """
     Returns the date a user was created
 
@@ -110,7 +110,7 @@ def CreationDate(UserID, Style = 0):
     except:
         return response.json()['errors'][0]['message']
 
-def GetRAP(UserID):
+def GetRAP(UserID: int) -> int:
     """
     Returns the total offical roblox RAP value for a user
 
@@ -142,7 +142,7 @@ def GetRAP(UserID):
             Done = True
     return(TotalValue)
 
-def GetLimiteds(UserID):
+def GetLimiteds(UserID: int) -> tuple:
     """
     Returns the total list of a users limiteds
 
@@ -177,7 +177,7 @@ def GetLimiteds(UserID):
             Done = True
     return(Limiteds,IDs)
 
-def GetBust(UserID,Width = 420, Height = 420):
+def GetBust(UserID: int, Width: int = 420, Height: int = 420) -> str:
     """
     Returns the link to a bust image of a user
 
@@ -186,7 +186,7 @@ def GetBust(UserID,Width = 420, Height = 420):
     response = requests.get(f"https://www.roblox.com/bust-thumbnail/image?userId={UserID}&width={Width}&height={Height}&format=png")
     return response.url
 
-def GetHeadshot(UserID,Width = 420, Height = 420):
+def GetHeadshot(UserID: int, Width: int = 420, Height: int = 420) -> str:
     """
     Returns the link to a headshot image of a user
 
@@ -195,15 +195,15 @@ def GetHeadshot(UserID,Width = 420, Height = 420):
     response = requests.get(f"https://www.roblox.com/headshot-thumbnail/image?userId={UserID}&width={Width}&height={Height}&format=png")
     return response.url
 
-def GetStatus(UserID):
+def GetStatus(UserID: int) -> str:
     """
     Returns the current status of a user
     """
     response = requests.get(Utils.UserAPIV1 + f"{str(UserID)}/status")
     return response.json()['status']
 
-def DoesNameExist(Username):
-    response = requests.get(Utils.UserAPIV1 + 'get-by-username?username=' + str(Username))
+def DoesNameExist(Username: str) -> str:
+    response = requests.get(Utils.APIURL + 'users/get-by-username?username=' + str(Username))
     try:
         if('errorMessage' in response.text):
             return ('Availible')

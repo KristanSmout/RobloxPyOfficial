@@ -28,7 +28,7 @@ GameAuthUrl = "https://auth.roblox.com/v1/authentication-ticket/"
 Version = "0.2.20"
 WIP = "Not Implemented Yet"
 
-def CheckForUpdate():
+def CheckForUpdate() -> str:
     """
     Returns whether a new version of robloxpy is availible.
     """
@@ -39,13 +39,13 @@ def CheckForUpdate():
     else:
         return f'Version {LatestVersion} is now availible'
 
-def GetVersion():
+def GetVersion() -> str:
     """
     Returns the current version of robloxpy that is being used.
     """
     return Version
 
-def UpdateInstructions(Version = "Latest"):
+def UpdateInstructions(Version: str="Latest") -> str:
     """
     Provides Instructions to update robloxpy
     """
@@ -55,7 +55,7 @@ def UpdateInstructions(Version = "Latest"):
     else:
         return f"This software is intended to work on robloxpy version {Version} please install using the following command \n'pip install robloxpy=={Version}'\n If you get an error with this command the developer of this tool has not provided a valid version"
 
-def SetProxy(ProxyIP):
+def SetProxy(ProxyIP: str) -> None:
     """
     Set the proxy to currently be used, this is global
     Format: IP:Port
@@ -66,7 +66,7 @@ def SetProxy(ProxyIP):
         os.environ['http_proxy'] = proxy
         os.environ['https_proxy'] = proxy
 
-def CheckProxy(proxyAddress=None):
+def CheckProxy(proxyAddress: str = None) -> str:
     """
     Check the current IP address being given by the program
     """
@@ -74,7 +74,7 @@ def CheckProxy(proxyAddress=None):
     response = requests.get('https://api.ipify.org/?format=json')
     return response.json()['ip']
 
-def CheckCookie(Cookie = None):
+def CheckCookie(Cookie: str = None) -> str:
     """
     If you want to check the current used cookie just run the function without any variable, if you wish to check a specific cookie then enter the cookie as a string
     """

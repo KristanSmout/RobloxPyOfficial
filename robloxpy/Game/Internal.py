@@ -14,7 +14,7 @@ class MyGame(object):
         self.isRootPlace
         self.descriptionisRootPlace
 
-def GetUniverseID(PlaceID):
+def GetUniverseID(PlaceID: int) -> int:
     try:
         response = Internal.CurrentCookie.get(f"{Utils.GamesAPI}games/multiget-place-details?placeIds={str(PlaceID)}")
         try:
@@ -24,7 +24,7 @@ def GetUniverseID(PlaceID):
     except Exception as e:
         return e
 
-def GetCurrentPlayers(PlaceID):
+def GetCurrentPlayers(PlaceID: int) -> int:
     try:
         UniverseID = GetUniverseID(PlaceID)
         GameData = External.GetCurrentUniversePlayers(UniverseID)
@@ -32,7 +32,7 @@ def GetCurrentPlayers(PlaceID):
     except:
         return "Error"
 
-def GetGameVisits(PlaceID):
+def GetGameVisits(PlaceID: int) -> int:
     try:
         UniverseID = GetUniverseID(PlaceID)
         GameData = External.GetUniverseData(UniverseID)
@@ -40,28 +40,28 @@ def GetGameVisits(PlaceID):
     except:
         return "Error"
 
-def GetGameLikes(PlaceID):
+def GetGameLikes(PlaceID: int) -> int:
     try:
         UniverseID = GetUniverseID(PlaceID)
         return External.GetUniverseVotes(UniverseID)['upVotes']
     except:
         return "Error"
 
-def GetGameDislikes(PlaceID):
+def GetGameDislikes(PlaceID: int) -> int:
     try:
         UniverseID = GetUniverseID(PlaceID)
         return External.GetUniverseVotes(UniverseID)['downVotes']
     except:
         return "Error"
 
-def GetGameFavourites(PlaceID):
+def GetGameFavourites(PlaceID: int) -> int:
     try:
         UniverseID = GetUniverseID(PlaceID)
         return External.GetUniverseFavourites(UniverseID)
     except:
         return "Error"
 
-def GetMyGameData(PlaceID):
+def GetMyGameData(PlaceID: int) -> str:
     try:
         response = Internal.CurrentCookie.get(Utils.DevelopAPIV2 + f"places/{PlaceID}")
         print((Utils.DevelopAPIV2 + f"places/{PlaceID}"))
