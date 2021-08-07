@@ -44,15 +44,15 @@ def GetDescription(GroupID: int) -> str:
     except:
         return response.json()['errors'][0]['message']
 
-# def GetEmblem(GroupID: int):  can't find a new endpoint for this.
-#     """
-#     Returns the URL of the group emblem
-#     """
-#     response = requests.get(Utils.APIURL + f"groups/{GroupID}")
-#     try:
-#         return response.json()['EmblemUrl']
-#     except:
-#         return response.json()['errors'][0]['message']
+def GetEmblem(GroupID: int) -> str:
+    """
+    Returns the URL of the group emblem
+    """
+    response = requests.get(Utils.ThumnnailAPIV1 + f"groups/icons?groupIds={GroupID}&size=420x420&format=Png&isCircular=true")
+    try:
+        return response.json()['data'][0]['imageUrl']
+    except:
+        return response.json()['errors'][0]['message']
 
 def GetRoles(GroupID: int) -> tuple:
     """

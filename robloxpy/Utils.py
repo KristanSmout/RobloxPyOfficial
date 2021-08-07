@@ -22,6 +22,7 @@ PrivateMessageAPIV1 = "https://privatemessages.roblox.com/v1/"
 GamesAPI = "https://games.roblox.com/v1/"
 DevelopAPIV2 = "https://develop.roblox.com/v2/"
 GameAuthUrl = "https://auth.roblox.com/v1/authentication-ticket/"
+ThumnnailAPIV1 = "https://thumbnails.roblox.com/v1/"
 
 
 
