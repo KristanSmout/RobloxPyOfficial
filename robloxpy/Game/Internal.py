@@ -16,6 +16,9 @@ class MyGame(object):
         self.descriptionisRootPlace = None
 
 def GetUniverseID(PlaceID: int) -> Union[int, str]:
+    """
+    Returns the universe id for the given game (if any)
+    """
     try:
         response = Internal.CurrentCookie.get(f"{Utils.GamesAPI}games/multiget-place-details?placeIds={str(PlaceID)}")
         try:
@@ -26,6 +29,9 @@ def GetUniverseID(PlaceID: int) -> Union[int, str]:
         return e
 
 def GetCurrentPlayers(PlaceID: int) -> Union[int, str]:
+    """
+    Returns the number of players in the given game
+    """
     try:
         UniverseID = GetUniverseID(PlaceID)
         GameData = External.GetCurrentUniversePlayers(UniverseID)
@@ -34,6 +40,9 @@ def GetCurrentPlayers(PlaceID: int) -> Union[int, str]:
         return "Error"
 
 def GetGameVisits(PlaceID: int) -> Union[int, str]:
+    """
+    Returns the number of players that have visited the given game
+    """
     try:
         UniverseID = GetUniverseID(PlaceID)
         GameData = External.GetUniverseData(UniverseID)
@@ -42,6 +51,9 @@ def GetGameVisits(PlaceID: int) -> Union[int, str]:
         return "Error"
 
 def GetGameLikes(PlaceID: int) -> Union[int, str]:
+    """
+    Returns the number of likes for the given game
+    """
     try:
         UniverseID = GetUniverseID(PlaceID)
         return External.GetUniverseVotes(UniverseID)['upVotes']
@@ -49,6 +61,9 @@ def GetGameLikes(PlaceID: int) -> Union[int, str]:
         return "Error"
 
 def GetGameDislikes(PlaceID: int) -> Union[int, str]:
+    """
+    Returns the number of dislikes for the given game
+    """
     try:
         UniverseID = GetUniverseID(PlaceID)
         return External.GetUniverseVotes(UniverseID)['downVotes']
@@ -56,6 +71,9 @@ def GetGameDislikes(PlaceID: int) -> Union[int, str]:
         return "Error"
 
 def GetGameFavourites(PlaceID: int) -> Union[int, str]:
+    """
+    Returns the number of players that have favoutited the given game
+    """
     try:
         UniverseID = GetUniverseID(PlaceID)
         return External.GetUniverseFavourites(UniverseID)
@@ -63,9 +81,11 @@ def GetGameFavourites(PlaceID: int) -> Union[int, str]:
         return "Error"
 
 def GetMyGameData(PlaceID: int) -> Union[Type[MyGame], str]:
+    """
+    Returns data for your specified game
+    """
     try:
         response = Internal.CurrentCookie.get(Utils.DevelopAPIV2 + f"places/{PlaceID}")
-        print((Utils.DevelopAPIV2 + f"places/{PlaceID}"))
         game = MyGame()
         game.maxPlayerCount = response.json()['maxPlayerCount']
         game.socialSlotType = response.json()['socialSlotType']
