@@ -203,15 +203,18 @@ def GetStatus(UserID: int) -> str:
     response = requests.get(Utils.UserAPIV1 + f"{str(UserID)}/status")
     return response.json()['status']
 
-def DoesNameExist(Username: str) -> Union[str, dict]:
+def DoesNameExist(Username: str) -> Union[bool, dict]:
+    """
+    Returns wether or not the given username is taken
+    """
     response = requests.get(Utils.APIURL + 'users/get-by-username?username=' + str(Username))
     try:
         if('errorMessage' in response.text):
-            return ('Availible')
+            return False
         else:
             if(response.json()['Username'].lower() == Username.lower()):
-                return('Unavailible')
+                return True
             elif (response.json()['Username'].lower() != Username.lower()):
-                return('Availible')
+                return False
     except:
         return response.json()

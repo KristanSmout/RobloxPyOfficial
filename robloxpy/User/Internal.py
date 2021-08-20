@@ -316,6 +316,9 @@ def UnblockUser(targetUserID: int) -> Union[bool, dict]:
         return response.json()
 
 def SendMessage(targetUserID: int, Subject: str, Body: str) -> Union[str, dict]:
+    """
+    Sends the given message to the given user
+    """
     response = None
     try:
         response = CurrentCookie.post(Utils.PrivateMessageAPIV1 + 'messages/send/', data={
@@ -328,7 +331,10 @@ def SendMessage(targetUserID: int, Subject: str, Body: str) -> Union[str, dict]:
     except Exception as e:
         return response.json()
 
-def JoinGame(PlaceId: int):
+def JoinGame(PlaceId: int) -> None:
+    """
+    Joins the given game
+    """
     BrowserID = random.randint(10000000000, 99999999999)
     webbrowser.open(f"roblox-player:1+launchmode:play+gameinfo:{Gamesession}+launchtime:{int(time()*1000)}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGame%26browserTrackerId%3D{BrowserID}%26placeId%3D{PlaceId}%26isPlayTogetherGame%3Dfalse+browsertrackerid:{BrowserID}+robloxLocale:en_us+gameLocale:en_us")
 
