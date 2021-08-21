@@ -205,7 +205,7 @@ def GetStatus(UserID: int) -> str:
 
 def DoesNameExist(Username: str) -> Union[bool, dict]:
     """
-    Returns wether or not the given username is taken
+    Returns whether or not the given username is taken
     """
     response = requests.get(Utils.APIURL + 'users/get-by-username?username=' + str(Username))
     try:
