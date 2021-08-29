@@ -1,29 +1,34 @@
-HasRequests = False
-HasJson = False
+from . import group
+from . import user
+from . import Utils
+from . import errors
+from . import asset
+from . import game
+import requests
+import sys
 
-#Check Requirements Exist
-try:
-    import requests
-    HasRequests = True
-except:
-    HasRequests = False
+__version__ = "1.0.0.a1"
 
-try:
-    import json
-    HasJson = True
-except:
-    HasJson = False
+this = sys.modules[__name__]
 
-if(HasRequests == False and HasJson == False):
-    print("Missing requests and json")
-elif(HasRequests == False and HasJson == True):
-    print("Please run the following command in cmd/terminal")
-    print("pip install requests")
-elif(HasJson == False):
-    print("Python installation error | json missing")
+this.CurrentCookie = None
+this.RawCookie = None
 
-import robloxpy.Utils as Utils
-import robloxpy.Game as Game
-import robloxpy.User as User
-import robloxpy.Market as Market    
-import robloxpy.Group as Group
+def SetCookie(Cookie: str) -> None:
+    """
+    Set the current cookie for internal commands.
+    """
+    try:
+        session = requests.session()
+        CurrentCookie = {'.ROBLOSECURITY': Cookie}
+        requests.utils.add_dict_to_cookiejar(session.cookies, CurrentCookie)
+        Header = session.post('https://auth.roblox.com/')
+        session.headers['x-csrf-token'] = Header.headers['x-csrf-token']
+        session.headers["Origin"] = "https://www.roblox.com"
+        session.headers["Referer"] = "https://www.roblox.com/"
+    except:
+        raise errors.InvalidCookie()
+    if Utils.CheckCookie(Cookie) == False:
+        raise errors.InvalidCookie()
+    this.CurrentCookie = session
+    this.RawCookie = Cookie

@@ -1,11 +1,13 @@
 
-# RobloxPy 0.2.16
+# RobloxPy 1.0
+**RobloxPY 1.0 is in very early stages of development and should only be used for testing purposes.**
+
 RobloxPy is a python API wrapper for roblox. This allows for quick and easy integration of these API's into a python project.
 <sup><center>If you need any help using RobloxPy or want to request an additional please join the discord server at 
-	https://www.kristansmout.com/discord
+	https://discord.gg/dSDc3vTWr9
 Accept The Terms & Create a ticket</center></sup>
 
-## Table Of Contents
+<!-- ## Table Of Contents
 
 * [Getting Started](#Getting-Started)
   * [Prerequisites](#Prerequisites)
@@ -1390,4 +1392,4 @@ This function will Returnsthe list of groups a user is in with the group ID's
 > ```
 
 
-These docs should be complete, if you find something that is not included in the documentation please let me know and I will add it when I get a chance. If you see anything in the documentation that is incorrect please also make me aware and I resolve it ASAP.
+These docs should be complete, if you find something that is not included in the documentation please let me know and I will add it when I get a chance. If you see anything in the documentation that is incorrect please also make me aware and I resolve it ASAP. -->
