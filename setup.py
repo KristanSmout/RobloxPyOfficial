@@ -8,7 +8,7 @@ setup(name='robloxpy',
     description='RobloxPy is an object oriented python wrapper for the roblox API.',
     author='KristanSmout & anytarseir67',
     author_email = '',
-    url='https://github.com/anytarseir67/RobloxPyOfficial/tree/1.0/',
+    url='https://github.com/KristanSmout/RobloxPyOfficial/tree/1.0',
     packages=['robloxpy'],
     install_requires=requirements,
     )
