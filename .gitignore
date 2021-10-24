@@ -58,3 +58,4 @@ robloxpy-0.2.20/README.md
 build/lib/robloxpy/Utils.py
 build/lib/robloxpy/User/Groups/Internal.py
 build/lib/robloxpy/Group/External.py
+!requirements.txt
