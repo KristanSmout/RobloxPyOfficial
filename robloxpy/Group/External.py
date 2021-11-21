@@ -79,7 +79,7 @@ def GetAllies(GroupID: int) -> Union[list, str]:
     """
     Returns a list of groups that are allies
     """
-    response = requests.get(Utils.GroupAPIV1 + str(GroupID) +"/relationships/allies")
+    response = requests.get(Utils.GroupAPIV1 + str(GroupID) +"/relationships/allies?model.maxRows=1000&model.startRowIndex=0")
     try:
         FullList = []
         Grouplist = json.loads(response.text)
