@@ -45,7 +45,7 @@ IsAccountSettingsSocialNetworksV2Enabled = None
 InApp = None
 HasFreeNameChange = None
 IsAgeDownEnabled = None
-ReceiveNewsletter = None
+#ReceiveNewsletter = None   removed due to error
 
 
 def SetCookie(Cookie: str,Details: bool = True) -> str:
@@ -120,7 +120,7 @@ def GetDetails(Details: bool = True) -> str:
     global InApp
     global HasFreeNameChange
     global IsAgeDownEnabled
-    global ReceiveNewsletter
+    #global ReceiveNewsletter   removed due to error
     if(Details == True):
         try:
             SettingsContainer = CurrentCookie.get(Utils.SettingsURL)
@@ -170,7 +170,7 @@ def GetDetails(Details: bool = True) -> str:
             InApp = SettingsContainer['InApp']
             HasFreeNameChange = SettingsContainer['HasFreeNameChange']
             isAgeDownEnabled = SettingsContainer['IsAgeDownEnabled']
-            ReceiveNewsletter = SettingsContainer['ReceiveNewsletter']
+            #ReceiveNewsletter = SettingsContainer['ReceiveNewsletter']   removed due to error
 
             Gamesession = requests.session()
             Gamesession.cookies[".ROBLOSECURITY"] = RawCookie
@@ -230,7 +230,7 @@ def GetDetails(Details: bool = True) -> str:
         InApp = None
         HasFreeNameChange = None
         IsAgeDownEnabled = None
-        ReceiveNewsletter = None
+        #ReceiveNewsletter = None   removed due to error
         return "Data Not Wanted"
 
 def isFollowing(targetUserID: int) -> Union[bool, str]:
